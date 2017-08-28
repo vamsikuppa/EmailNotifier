@@ -4,7 +4,7 @@ import email
 import lxml
 from bs4 import BeautifulSoup
 import EmailSend
-
+import test_list
 
 def init(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
@@ -14,7 +14,8 @@ def init(host, username, password):
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y")
+    date = (datetime.date.today() - datetime.timedelta(2)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    #date = (datetime.datetime.today() - datetime.timedelta(2)).strftime("%d-%b-%Y:%H-%M-%S")
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
     # result, data = mail.search(None, '(UNSEEN)')  # to get the unread emails #Always use mail.search() here
@@ -43,13 +44,12 @@ def fetch_body(mail, uidsList):
         htmlbody = get_text_block(msg)
         tree = BeautifulSoup(htmlbody, "lxml")  # Never return the tree here as it will take only the last return
         dtetablesList = get_table(tree)
-        # ****Have to write logic for list of lists (for list with both CDRM and starter)
         analysisDueDate = str(dtetablesList[0][7].encode('utf-8')).strip().decode('utf-8')
         if (len(analysisDueDate.encode('utf-8')) == 25):
             validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
         reqDate = datetime.datetime.strptime(analysisDueDate[:-11], "%b. %d, %Y")
         currentDate = datetime.datetime.now()
-        if (reqDate > currentDate):  # For testing purpose only, have to change the logic to equals
+        if (reqDate == currentDate):  # For testing purpose only, have to change the logic to equals.
             print "{} is true".format(analysisDueDate.encode('utf-8'))
             print "appending list before sending it to mail"
             for i,val in enumerate(dtetablesList):
@@ -86,11 +86,17 @@ def get_table(tree):
     dtetable = tree.find("table", {"id": "dte_details_table"})  # To get the dte table
     table_body = dtetable.find('tbody')
     rows = table_body.find_all('tr')
-    for row in rows:
-        cols = row.find_all('td')
-        cols = [ele.text.strip() for ele in cols]
-        dtedetailsList.append([ele for ele in cols if ele])  # Get rid of empty values
-    dtedetailsList.append(preflightsList)
+    # Logic for dte table contains multiple rows (CDRM and DTE)
+    if(len(rows)>1):
+        dteTableRowsData=[[td.text.strip() for td in rows[i].find_all('td')] for i in range(len(rows))]
+        return dteTableRowsData
+    #Logic for single row in dte table
+    else:
+        for row in rows:
+            cols = row.find_all('td')
+            cols = [ele.text.strip() for ele in cols]
+            dtedetailsList.append([ele for ele in cols if ele])  # Get rid of empty values
+        dtedetailsList.append(preflightsList) # here append both dte details table and pre flight tables
     return dtedetailsList
 
 
@@ -121,11 +127,20 @@ def main():
     mail = init(host, username, password)
     uidsList = get_uids(mail)
     # fetch_header(mail, uidsList) #Write code here to fetch headers
-    finalMailingList = fetch_body(mail, uidsList)  # The Final Maliling List that need to be sent
-    print "This is the final list that will be printed in mail"
-    print finalMailingList
-    EmailSend.send_mail(finalMailingList)
-    exit(mail)
+    if(len(uidsList)>0): #Check for mAails count
+        finalMailingList = fetch_body(mail, uidsList)  # The Final Maliling List that need to be sent
+        if(len(finalMailingList)==0):
+            print "Analysis date validation did not pass"
+            exit(mail)
+            return
+        print "This is the final list that will be printed in mail"
+        print finalMailingList
+        #test_list.list_iterate(finalMailingList)
+        EmailSend.send_mail(finalMailingList)
+        exit(mail)
+    else:
+        print "No mails found. Exiting the mailbox notifier"
+        exit(mail)
 
 
 if __name__ == '__main__':

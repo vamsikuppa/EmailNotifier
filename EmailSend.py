@@ -28,6 +28,9 @@ def send_mail(finalList):
            "1711A CDRM Environment will be patching to 0823.0831 label today"
     html = """\
     <html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
     <body bgcolor="#FFFFFF" text="#000000">
 <div class="moz-forward-container">
     <div class="moz-forward-container">
@@ -130,18 +133,10 @@ def send_mail(finalList):
                                                         href="https://rms.us.oracle.com/analytics/saw.dll?Dashboard&amp;PortalPath=%2Fshared%2FFUSION%3AFINANCIALS%2F_portal%2FFinancials&amp;Page=Merge%20Down&amp;PageIdentifier=2kqavjq4k325i1km&amp;BookmarkState=3mbo5odbnnunipd9hejo8qb30i&amp;options=frd">Merge
                                                     Down dashboard</a>
                                                 </li>
-                                                <li
-                                                        class="MsoNormal"
-                                                        style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l6
-                                                      level2 lfo1">1711A
-                                                    CDRM Environment
-                                                    will be patching
-                                                    to 0823.0831
-                                                    label<b>
-                                                    </b>today<b><br>
-                                                    </b></li>
                                             </ul>
                                         </ul>
+                                        <p><span style="color:rgb(255,0,0);">
+                                        <strong>#DispositionsDUE Today: Pleasefind the priorities below</strong></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +148,6 @@ def send_mail(finalList):
     </div>
     </html>
     """
-
     # Record the MIME types of both parts - text/plain and text/html.
     part1 = MIMEText(text, 'plain')
 
@@ -161,16 +155,28 @@ def send_mail(finalList):
     msg.attach(part1)
     # Attach based on the list length and return the HTML Message of UL List in each iteration
     chunks = []
-    for i, val in enumerate(finalList):
-        chunks.append(generate_html_for_list(val))  # Pass on the each index of list to generate html
+    #for i, val in enumerate(finalList):
+    if(len(finalList)>1):
+        chunks.append(generate_html_for_preflight_list(finalList[1])) # Pass the preflight table details
+        chunks.append(generate_html_for_dte_list(finalList[0]))  # Pass on the dte table details
         # As per doc https://docs.python.org/3/faq/programming.html#what-is-the-most-efficient-way-to-concatenate-many-strings-together
-    # listHtml1 = html.join(chunks) # The original
-    stringChunks = ""
-    for i, x in enumerate(chunks):
-        stringChunks = stringChunks + str(x)
-    listHtml1 = html + stringChunks
-    part3 = MIMEText(listHtml1, 'html')
-    msg.attach(part3)  # ****** This is Working :)
+        # listHtml1 = html.join(chunks) # The original
+        stringChunks = ""
+        for i, x in enumerate(chunks):
+            stringChunks = stringChunks + str(x)
+        listHtml1 = html + stringChunks
+        part3 = MIMEText(listHtml1, 'html')
+        msg.attach(part3)  # ****** This is Working :)
+    else:
+        chunks.append(generate_html_for_dte_list(finalList[0]))  # Pass on the dte table details
+        # As per doc https://docs.python.org/3/faq/programming.html#what-is-the-most-efficient-way-to-concatenate-many-strings-together
+        # listHtml1 = html.join(chunks) # The original
+        stringChunks = ""
+        for i, x in enumerate(chunks):
+            stringChunks = stringChunks + str(x)
+        listHtml1 = html + stringChunks
+        part3 = MIMEText(listHtml1, 'html')
+        msg.attach(part3)  # ****** This is Working :)
     # Send the message via local SMTP server.
     s = smtplib.SMTP_SSL('stbeehive.oracle.com')
     s.login(me, "Skyfall@1")
@@ -180,14 +186,20 @@ def send_mail(finalList):
     s.quit()
 
 
-def generate_html_for_list(finalList1):
+def generate_html_for_dte_list(finalList1):
+    #*****Have to write logic to handle both CDRM and starter list of lists
+    # if(finalList[3]=='STARTER') write logic here to append the starter dte id
+    # if(finalList[3] == 'CDRM') write logic here to append the CDRM dte id
     # [x.encode('utf-8') for x in finalList1]
-    msg = """<html><body>
-    <ul type="disc">
-        <li>Preflight :</li>
-        <ul><li>Analysis due date :{}</li>
-        <li>Purpose:</li></ul>
-        <ul type="circle"><li>CDRM:</li><li>STARTER:{}</li></ul></ul></body></html>
-    """.format(finalList1[7].encode('utf-8'),
-               finalList1[1])  # ****For testing purpose only #For dates use encode('utf-8')
+    msg = """<ul><li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2level1 lfo2">
+    <font color="#ff0000">Analysis due date :{}</font></li></ul>
+        <ul type="circle"><li>CDRM:</li><li>STARTER:{}</li></ul></body></html>
+    """.format(str(finalList1[7].encode('utf-8')),finalList1[1])  # ****For testing purpose only #For dates use encode('utf-8')
+    return msg
+
+def generate_html_for_preflight_list(finalList2):
+    #Encoding problem here
+    msg="""<ul type="disc"><li>Preflight :{}</li>
+    <ul><li>Purpose:{}</li></ul>
+    """.format(finalList2[2],finalList2[3])
     return msg
