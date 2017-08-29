@@ -136,7 +136,7 @@ def send_mail(finalList):
                                             </ul>
                                         </ul>
                                         <p><span style="color:rgb(255,0,0);">
-                                        <strong>#DispositionsDUE Today: Pleasefind the priorities below</strong></span></p>
+                                        <strong>#DispositionsDUE Today: Please find the priorities below</strong></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +194,7 @@ def generate_html_for_dte_list(finalList1):
     msg = """<ul><li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2level1 lfo2">
     <font color="#ff0000">Analysis due date :{}</font></li></ul>
         <ul type="circle"><li>CDRM:</li><li>STARTER:{}</li></ul></body></html>
-    """.format(str(finalList1[7].encode('utf-8')),finalList1[1])  # ****For testing purpose only #For dates use encode('utf-8')
+    """.format(str(finalList1[7].encode('utf-8')),finalList1[0])  # ****For testing purpose only #For dates use encode('utf-8')
     return msg
 
 def generate_html_for_preflight_list(finalList2):

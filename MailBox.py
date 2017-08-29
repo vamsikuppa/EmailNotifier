@@ -14,7 +14,7 @@ def init(host, username, password):
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(2)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y")  # Change logic here for daterange
     #date = (datetime.datetime.today() - datetime.timedelta(2)).strftime("%d-%b-%Y:%H-%M-%S")
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
@@ -34,6 +34,7 @@ def fetch_header(mail, uidsList):  # Write code here to hetch headers Ref : http
 
 def fetch_body(mail, uidsList):
     finalMailingList = []
+    print "There are {} mails found".format(len(uidsList))
     for uid in uidsList:
         # result, data = mail.fetch(uid, "(RFC822)")  # fetch the email body (RFC822) for the given ID
         # raw_email = data[0][1]  # here's the body, which is raw text of the whole email # including headers and alternate payloads
@@ -44,17 +45,42 @@ def fetch_body(mail, uidsList):
         htmlbody = get_text_block(msg)
         tree = BeautifulSoup(htmlbody, "lxml")  # Never return the tree here as it will take only the last return
         dtetablesList = get_table(tree)
-        analysisDueDate = str(dtetablesList[0][7].encode('utf-8')).strip().decode('utf-8')
-        if (len(analysisDueDate.encode('utf-8')) == 25):
-            validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
-        reqDate = datetime.datetime.strptime(analysisDueDate[:-11], "%b. %d, %Y")
-        currentDate = datetime.datetime.now()
-        if (reqDate == currentDate):  # For testing purpose only, have to change the logic to equals.
-            print "{} is true".format(analysisDueDate.encode('utf-8'))
-            print "appending list before sending it to mail"
-            for i,val in enumerate(dtetablesList):
-                finalMailingList.append(val)
-            print "appending complete"
+        #Logic if the dtetablesList contains 2 rows i.e CDRM and starter
+        if(len(dtetablesList)==3):
+            for val in dtetablesList[0:2]:  #Access the first two rows to get dte table list
+                analysisDueDate=str(val[7].encode('utf-8')).strip().decode('utf-8')  # This returns you the Analysis date of CDRM and Starter
+                if (len(analysisDueDate.encode('utf-8')) == 25):
+                    validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
+                reqDate = datetime.datetime.strptime(analysisDueDate[:-11], "%b. %d, %Y")
+                currentDate = datetime.datetime.now()
+                topology = str(val[4].encode('utf-8')) # This returns the topology
+                if ((reqDate < currentDate) and ((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
+                    print "{} is true".format(analysisDueDate.encode('utf-8'))
+                    print "appending list before sending it to mail"
+                    for i,val in enumerate(dtetablesList):
+                        finalMailingList.append(val)
+                    print "appending complete"
+                else:
+                    print "Analysis date didnot pass the validation continuing with the next mail" #WIP
+        #Logic if the dtetablesList contains one row i.e CDRM or starter then comparing for its due date with today
+        elif(len(dtetablesList)==2):
+            analysisDueDate = str(dtetablesList[0][7].encode('utf-8')).strip().decode('utf-8')
+            if (len(analysisDueDate.encode('utf-8')) == 25):
+                validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
+            reqDate = datetime.datetime.strptime(analysisDueDate[:-11], "%b. %d, %Y").strftime("%Y-%m-%d")
+            currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
+            #Checking GSI or FSCM topology
+            topology = str(dtetablesList[0][4].encode('utf-8'))
+            if ((reqDate >= currentDate)and((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
+                print "{} is true".format(analysisDueDate.encode('utf-8'))
+                print "appending list before sending it to mail"
+                for i,val in enumerate(dtetablesList):
+                    finalMailingList.append(val)
+                print "appending complete"
+            else:
+                print "Analysis date or Topology validation didnot pass the validation continuing with the next mail"
+        else:
+            continue
     return finalMailingList
 
 
@@ -89,7 +115,10 @@ def get_table(tree):
     # Logic for dte table contains multiple rows (CDRM and DTE)
     if(len(rows)>1):
         dteTableRowsData=[[td.text.strip() for td in rows[i].find_all('td')] for i in range(len(rows))]
-        return dteTableRowsData
+        # for i,val in enumerate(preflightsList):
+        #     dteTableRowsData.append(val)
+        dteTableRowsData.append(preflightsList)
+        return dteTableRowsData # This will return both DTE and the preflight details
     #Logic for single row in dte table
     else:
         for row in rows:
