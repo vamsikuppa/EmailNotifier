@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import imaplib
 import datetime
 import email
@@ -36,6 +37,7 @@ def fetch_body(mail, uidsList):
     finalMailingList = []
     print "There are {} mails found".format(len(uidsList))
     for uid in uidsList:
+        flag = False
         # result, data = mail.fetch(uid, "(RFC822)")  # fetch the email body (RFC822) for the given ID
         # raw_email = data[0][1]  # here's the body, which is raw text of the whole email # including headers and alternate payloads
         # msg = email.message_from_string(raw_email)
@@ -47,38 +49,58 @@ def fetch_body(mail, uidsList):
         dtetablesList = get_table(tree)
         #Logic if the dtetablesList contains 2 rows i.e CDRM and starter
         if(len(dtetablesList)==3):
-            for val in dtetablesList[0:2]:  #Access the first two rows to get dte table list
+            for i,val in enumerate(dtetablesList[0:2]):  #Access the first two rows to get dte table list
+                #i=0
                 analysisDueDate=str(val[7].encode('utf-8')).strip().decode('utf-8')  # This returns you the Analysis date of CDRM and Starter
-                if (len(analysisDueDate.encode('utf-8')) == 25):
-                    validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
-                reqDate = datetime.datetime.strptime(analysisDueDate[:-11], "%b. %d, %Y")
-                currentDate = datetime.datetime.now()
+                analysisDueDate = analysisDueDate.replace("Sept","Sep")
+                if (len(analysisDueDate.encode('utf-8')) == 25): #date-format: Aug. 29, 2017, 4 p.m. PT
+                    reqDate = validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
+                elif(len(analysisDueDate.encode('utf-8')) == 24): #date-format: Aug. 1, 2017, 4 p.m. PT
+                    reqDate = validate_date(analysisDueDate[:-11])
+                else: #Date- format:Aug. 30, 2017, noon PT
+                    reqDate = validate_date(analysisDueDate[:-9])
+                currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
                 topology = str(val[4].encode('utf-8')) # This returns the topology
-                if ((reqDate < currentDate) and ((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
+                envType = str(dtetablesList[i][3].encode('utf-8'))  #Checking for CDRM or STARTER
+                if ((reqDate >= currentDate) and ((topology=="GSI") or (topology=="FSCM")) and (envType == "CDRM")):  # For testing purpose only, have to change the logic to equals.
                     print "{} is true".format(analysisDueDate.encode('utf-8'))
                     print "appending list before sending it to mail"
-                    for i,val in enumerate(dtetablesList):
-                        finalMailingList.append(val)
+                    #for i,val in enumerate(dtetablesList[i]):
+                    finalMailingList.append(dtetablesList[i])
                     print "appending complete"
+                    flag = True
                 else:
-                    print "Analysis date didnot pass the validation continuing with the next mail" #WIP
+                    print "Analysis date didnot pass the validation continuing with the next mail for {}".format(dtetablesList[0])
+                    flag = False
+            if(flag == True):
+                finalMailingList.append(dtetablesList[2]) #Append only when the condition is satisfied
         #Logic if the dtetablesList contains one row i.e CDRM or starter then comparing for its due date with today
         elif(len(dtetablesList)==2):
             analysisDueDate = str(dtetablesList[0][7].encode('utf-8')).strip().decode('utf-8')
+            analysisDueDate = analysisDueDate.replace("Sept", "Sep")
             if (len(analysisDueDate.encode('utf-8')) == 25):
-                validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
-            reqDate = datetime.datetime.strptime(analysisDueDate[:-11], "%b. %d, %Y").strftime("%Y-%m-%d")
+                reqDate=validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
+            elif (len(analysisDueDate.encode('utf-8')) == 24):
+                reqDate = validate_date(analysisDueDate[:-11])
+            else:
+                reqDate = validate_date(analysisDueDate[:-9])
             currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
+            #Checking for CDRM or STARTER
+            envType = str(dtetablesList[0][3].encode('utf-8'))
             #Checking GSI or FSCM topology
             topology = str(dtetablesList[0][4].encode('utf-8'))
-            if ((reqDate >= currentDate)and((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
+            if ((reqDate >= currentDate)and((topology=="GSI") or (topology=="FSCM")) and (envType == "CDRM")):  # For testing purpose only, have to change the logic to equals.
                 print "{} is true".format(analysisDueDate.encode('utf-8'))
                 print "appending list before sending it to mail"
-                for i,val in enumerate(dtetablesList):
-                    finalMailingList.append(val)
+                #for i,val in enumerate(dtetablesList):
+                finalMailingList.append(dtetablesList[0])
                 print "appending complete"
+                flag = True
             else:
-                print "Analysis date or Topology validation didnot pass the validation continuing with the next mail"
+                print "Analysis date or Topology validation or Env Type didnot pass the validation continuing with the next mail for {}".format(dtetablesList[0])
+                flag = False
+            if(flag == True):
+                finalMailingList.append(dtetablesList[1]) #Append only when the condition is satisfied
         else:
             continue
     return finalMailingList
@@ -130,10 +152,12 @@ def get_table(tree):
 
 
 def validate_date(date_text):
-    try:
-        datetime.datetime.strptime(date_text, '%b. %d, %Y')
-    except ValueError:
-        raise ValueError("Incorrect date format should be MMM. DD, YYYY. Or Analysis due date doesnt have proper date")
+    #try:
+        #datetime.datetime.strptime(date_text, '%b. %d, %Y')
+        reqDate = datetime.datetime.strptime(date_text, "%b. %d, %Y").strftime("%Y-%m-%d")
+        return reqDate
+    #except ValueError:
+        #raise ValueError("Incorrect date format should be MMM. DD, YYYY. Or Analysis due date doesnt have proper date")
 
 
 def check_if_today(reqDate, currentDate):
