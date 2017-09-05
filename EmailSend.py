@@ -93,17 +93,21 @@ def send_mail(finalList):
     # Attach parts into message container.
     msg.attach(part1)
     #To encode in utf-8
-
     # Attach based on the list length and return the HTML Message of UL List in each iteration
+    run_once = False  # Flag to run the analysis date only once
     chunks = []
     stringChunks = ""
     for i,el in reversed(list(enumerate(finalList))):
-        flag = False
+        flag = False # Counter to break inner loop
         for el1 in el:
             if (isinstance(el1, list)):
                 chunks.append(generate_html_for_preflight_list(el)) # Pass the preflight table details
+                run_once = True
                 break
             else:
+                if(run_once == True):
+                    chunks.append(append_analysisdate_for_dte_list(el)) #Append analysis date once
+                    run_once = False
                 chunks.append(generate_html_for_dte_list(el))  # Pass on the dte table details
                 flag = True
                 break
@@ -139,12 +143,20 @@ def generate_html_for_dte_list(finalList1):
     # if(finalList[3]=='STARTER') write logic here to append the starter dte id
     # if(finalList[3] == 'CDRM') write logic here to append the CDRM dte id
     # [x.encode('utf-8') for x in finalList1]
-    msg = """<ul><li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2level1 lfo2">
-    <font color="#ff0000">Analysis due date: {}</font></li></ul>
-        <ul type="circle"><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1"><li>CDRM: {}</li></a>
-        </ul></ul></body></html>
-    """.format(str(finalList1[7].encode('utf-8')),finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))  # ****For testing purpose only #For dates use encode('utf-8')
-    return msg
+    try:
+        envType = str(finalList1[3].encode('utf-8'))
+    except IndexError:
+        print "Env Type Index Error occurred"
+    if(envType == "CDRM"):
+        msg = """<ul type="circle"><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1"><li>CDRM: {}</li></a>
+                    </ul>
+                    """.format(finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))  # ****For testing purpose only #For dates use encode('utf-8')
+        return msg
+    else:
+        msg = """<ul type="circle"><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1"><li>STARTER: {}</li></a>
+                </ul></ul></body></html>
+                """.format(finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))  # ****For testing purpose only #For dates use encode('utf-8')
+        return msg
 
 def generate_html_for_preflight_list(finalList2):
     #Encoding problem here
@@ -161,6 +173,14 @@ def generate_html_for_preflight_list(finalList2):
     <ul><li>Purpose: {}</li></ul>
     """.format(finalList3[0],finalList3[3])
     return msg
+
+
+def append_analysisdate_for_dte_list(finalList1):
+    msg = """<ul><li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2level1 lfo2">
+                    <font color="#ff0000">Analysis due date: {}</font></li></ul>
+                    """.format(str(finalList1[7].encode('utf-8')).decode('utf-8').replace(u"\xa0"," ").encode('utf-8')) # To replace ascii character
+    return msg
+
 
 
 #Code to remove duplicates

@@ -17,7 +17,7 @@ def init(host, username, password):
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(2)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y")  # Change logic here for daterange
     #date = (datetime.datetime.today() - datetime.timedelta(2)).strftime("%d-%b-%Y:%H-%M-%S")
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
@@ -40,8 +40,6 @@ def fetch_body(mail, uidsList):
     print "There are {} mails found".format(len(uidsList))
     for uid in uidsList:
         flag = False
-        if(str(uid) == "51"):
-            continue
         # result, data = mail.fetch(uid, "(RFC822)")  # fetch the email body (RFC822) for the given ID
         # raw_email = data[0][1]  # here's the body, which is raw text of the whole email # including headers and alternate payloads
         # msg = email.message_from_string(raw_email)
@@ -69,7 +67,7 @@ def fetch_body(mail, uidsList):
                 currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
                 topology = str(val[4].encode('utf-8')) # This returns the topology
                 envType = str(dtetablesList[i][3].encode('utf-8'))  #Checking for CDRM or STARTER
-                if ((reqDate >= currentDate) and ((topology=="GSI") or (topology=="FSCM")) and (envType == "CDRM")):  # For testing purpose only, have to change the logic to equals.
+                if ((reqDate >= currentDate) and ((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
                     print "{} is true".format(analysisDueDate.encode('utf-8'))
                     print "appending list before sending it to mail"
                     #for i,val in enumerate(dtetablesList[i]):
@@ -99,7 +97,7 @@ def fetch_body(mail, uidsList):
             envType = str(dtetablesList[0][3].encode('utf-8'))
             #Checking GSI or FSCM topology
             topology = str(dtetablesList[0][4].encode('utf-8'))
-            if ((reqDate >= currentDate)and((topology=="GSI") or (topology=="FSCM")) and (envType == "CDRM")):  # For testing purpose only, have to change the logic to equals.
+            if ((reqDate >= currentDate)and((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
                 print "{} is true".format(analysisDueDate.encode('utf-8'))
                 print "appending list before sending it to mail"
                 #for i,val in enumerate(dtetablesList):
