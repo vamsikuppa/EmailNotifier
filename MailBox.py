@@ -5,7 +5,7 @@ import email
 import lxml
 from bs4 import BeautifulSoup
 import EmailSend
-import test_list
+import re
 
 def init(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
@@ -15,7 +15,7 @@ def init(host, username, password):
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    date = (datetime.date.today() - datetime.timedelta(2)).strftime("%d-%b-%Y")  # Change logic here for daterange
     #date = (datetime.datetime.today() - datetime.timedelta(2)).strftime("%d-%b-%Y:%H-%M-%S")
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
@@ -38,6 +38,8 @@ def fetch_body(mail, uidsList):
     print "There are {} mails found".format(len(uidsList))
     for uid in uidsList:
         flag = False
+        if(str(uid) == "51"):
+            continue
         # result, data = mail.fetch(uid, "(RFC822)")  # fetch the email body (RFC822) for the given ID
         # raw_email = data[0][1]  # here's the body, which is raw text of the whole email # including headers and alternate payloads
         # msg = email.message_from_string(raw_email)
@@ -53,12 +55,28 @@ def fetch_body(mail, uidsList):
                 #i=0
                 analysisDueDate=str(val[7].encode('utf-8')).strip().decode('utf-8')  # This returns you the Analysis date of CDRM and Starter
                 analysisDueDate = analysisDueDate.replace("Sept","Sep")
-                if (len(analysisDueDate.encode('utf-8')) == 25): #date-format: Aug. 29, 2017, 4 p.m. PT
-                    reqDate = validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
-                elif(len(analysisDueDate.encode('utf-8')) == 24): #date-format: Aug. 1, 2017, 4 p.m. PT
-                    reqDate = validate_date(analysisDueDate[:-11])
-                else: #Date- format:Aug. 30, 2017, noon PT
-                    reqDate = validate_date(analysisDueDate[:-9])
+                print "length of analysis date{}".format(len(analysisDueDate))
+                # if (len(analysisDueDate) == 25):
+                #     print "analysis due date of length 25 {}".format(analysisDueDate.encode('utf-8'))
+                #     print "Required date for length -12 is {}".format(analysisDueDate[:-12])
+                #     reqDate = validate_date(analysisDueDate[:-12])  # Date format = Aug. 24, 2017
+                # elif (len(analysisDueDate) == 24):
+                #     print "Required date for length -11 is {}".format(analysisDueDate[:-11])
+                #     reqDate = validate_date(analysisDueDate[:-11])
+                # elif (len(analysisDueDate) == 23):
+                #     print "Required date for length -10 is {}".format(analysisDueDate[:-11])
+                #     reqDate = validate_date(analysisDueDate[:-11])
+                # elif (len(analysisDueDate) == 21):
+                #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
+                #     reqDate = validate_date(analysisDueDate[:-9])
+                # else:
+                #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
+                #     reqDate = validate_date(analysisDueDate[:-9])
+                if (re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)): #Matches pattern at start of string
+                    resp = re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)
+                    reqDate = validate_date(resp.group(0))
+                else:
+                    print "Analysis date not found at start of the string"
                 currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
                 topology = str(val[4].encode('utf-8')) # This returns the topology
                 envType = str(dtetablesList[i][3].encode('utf-8'))  #Checking for CDRM or STARTER
@@ -78,12 +96,27 @@ def fetch_body(mail, uidsList):
         elif(len(dtetablesList)==2):
             analysisDueDate = str(dtetablesList[0][7].encode('utf-8')).strip().decode('utf-8')
             analysisDueDate = analysisDueDate.replace("Sept", "Sep")
-            if (len(analysisDueDate.encode('utf-8')) == 25):
-                reqDate=validate_date(analysisDueDate[:-11])  # Date format = Aug. 24, 2017
-            elif (len(analysisDueDate.encode('utf-8')) == 24):
-                reqDate = validate_date(analysisDueDate[:-11])
+            print "length of analysis date{}".format(len(analysisDueDate))
+            # if (len(analysisDueDate) == 21):  #Date format = Sep. 5, 2017, noon PT
+            #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
+            #     reqDate=validate_date(analysisDueDate[:-9])
+            # elif (len(analysisDueDate) == 22):  # Date format = Sep. 14, 2017, noon PT
+            #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
+            #     reqDate = validate_date(analysisDueDate[:-9])
+            # elif (len(analysisDueDate) == 23): #Date format = Sep. 5, 2017, 5 p.m. PT
+            #     print "Required date for length -11 is {}".format(analysisDueDate[:-11])
+            #     reqDate = validate_date(analysisDueDate[:-11])
+            # # elif (len(analysisDueDate) == 24):
+            # #     print "Required date for length -12 is {}".format(analysisDueDate[:-9])
+            # #     reqDate = validate_date(analysisDueDate[:-9])
+            # else:  # length = 25, date format - Sep. 16, 2017, 10 a.m. PT
+            #     print "Required date for length -12 is {}".format(analysisDueDate[:-12])
+            #     reqDate = validate_date(analysisDueDate[:-12])
+            if (re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)):  # Matches pattern at start of string
+                resp = re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)
+                reqDate = validate_date(resp.group(0))
             else:
-                reqDate = validate_date(analysisDueDate[:-9])
+                print "Analysis date not found at start of the string"
             currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
             #Checking for CDRM or STARTER
             envType = str(dtetablesList[0][3].encode('utf-8'))
