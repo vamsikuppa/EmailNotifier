@@ -6,6 +6,8 @@ import lxml
 from bs4 import BeautifulSoup
 import EmailSend
 import re
+import requests
+
 
 def init(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
@@ -53,25 +55,12 @@ def fetch_body(mail, uidsList):
         if(len(dtetablesList)==3):
             for i,val in enumerate(dtetablesList[0:2]):  #Access the first two rows to get dte table list
                 #i=0
-                analysisDueDate=str(val[7].encode('utf-8')).strip().decode('utf-8')  # This returns you the Analysis date of CDRM and Starter
+                try:
+                    analysisDueDate=str(val[7].encode('utf-8')).strip().decode('utf-8')  # This returns you the Analysis date of CDRM and Starter
+                except IndexError:
+                    print "Error occurred with Analysis date Index"
                 analysisDueDate = analysisDueDate.replace("Sept","Sep")
                 print "length of analysis date{}".format(len(analysisDueDate))
-                # if (len(analysisDueDate) == 25):
-                #     print "analysis due date of length 25 {}".format(analysisDueDate.encode('utf-8'))
-                #     print "Required date for length -12 is {}".format(analysisDueDate[:-12])
-                #     reqDate = validate_date(analysisDueDate[:-12])  # Date format = Aug. 24, 2017
-                # elif (len(analysisDueDate) == 24):
-                #     print "Required date for length -11 is {}".format(analysisDueDate[:-11])
-                #     reqDate = validate_date(analysisDueDate[:-11])
-                # elif (len(analysisDueDate) == 23):
-                #     print "Required date for length -10 is {}".format(analysisDueDate[:-11])
-                #     reqDate = validate_date(analysisDueDate[:-11])
-                # elif (len(analysisDueDate) == 21):
-                #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
-                #     reqDate = validate_date(analysisDueDate[:-9])
-                # else:
-                #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
-                #     reqDate = validate_date(analysisDueDate[:-9])
                 if (re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)): #Matches pattern at start of string
                     resp = re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)
                     reqDate = validate_date(resp.group(0))
@@ -94,24 +83,12 @@ def fetch_body(mail, uidsList):
                 finalMailingList.append(dtetablesList[2]) #Append only when the condition is satisfied
         #Logic if the dtetablesList contains one row i.e CDRM or starter then comparing for its due date with today
         elif(len(dtetablesList)==2):
-            analysisDueDate = str(dtetablesList[0][7].encode('utf-8')).strip().decode('utf-8')
+            try:
+                analysisDueDate = str(dtetablesList[0][7].encode('utf-8')).strip().decode('utf-8')
+            except IndexError:
+                print "Error occurred with Analysis date Index"
             analysisDueDate = analysisDueDate.replace("Sept", "Sep")
             print "length of analysis date{}".format(len(analysisDueDate))
-            # if (len(analysisDueDate) == 21):  #Date format = Sep. 5, 2017, noon PT
-            #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
-            #     reqDate=validate_date(analysisDueDate[:-9])
-            # elif (len(analysisDueDate) == 22):  # Date format = Sep. 14, 2017, noon PT
-            #     print "Required date for length -9 is {}".format(analysisDueDate[:-9])
-            #     reqDate = validate_date(analysisDueDate[:-9])
-            # elif (len(analysisDueDate) == 23): #Date format = Sep. 5, 2017, 5 p.m. PT
-            #     print "Required date for length -11 is {}".format(analysisDueDate[:-11])
-            #     reqDate = validate_date(analysisDueDate[:-11])
-            # # elif (len(analysisDueDate) == 24):
-            # #     print "Required date for length -12 is {}".format(analysisDueDate[:-9])
-            # #     reqDate = validate_date(analysisDueDate[:-9])
-            # else:  # length = 25, date format - Sep. 16, 2017, 10 a.m. PT
-            #     print "Required date for length -12 is {}".format(analysisDueDate[:-12])
-            #     reqDate = validate_date(analysisDueDate[:-12])
             if (re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)):  # Matches pattern at start of string
                 resp = re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)
                 reqDate = validate_date(resp.group(0))
@@ -231,3 +208,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+

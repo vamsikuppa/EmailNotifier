@@ -12,7 +12,8 @@ def send_mail(finalList):
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
     #recipients = ['vamsi.k.kuppa@oracle.com','shashank.sahay@oracle.com']
-    you = "sasasriv_org_ww@oracle.com"
+    #you = "sasasriv_org_ww@oracle.com"
+    you = "vamsi.k.kuppa@oracle.com"
 
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
@@ -107,8 +108,6 @@ def send_mail(finalList):
                 flag = True
                 break
         if(flag==True):
-            # for i, x in enumerate(chunks):
-            #     stringChunks = stringChunks + str(x)
             continue
             # As per doc https://docs.python.org/3/faq/programming.html#what-is-the-most-efficient-way-to-concatenate-many-strings-together
     for i, x in enumerate(chunks):
@@ -142,8 +141,9 @@ def generate_html_for_dte_list(finalList1):
     # [x.encode('utf-8') for x in finalList1]
     msg = """<ul><li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2level1 lfo2">
     <font color="#ff0000">Analysis due date: {}</font></li></ul>
-        <ul type="circle"><li>CDRM: {}</li></ul></ul></body></html>
-    """.format(str(finalList1[7].encode('utf-8')),finalList1[0].encode('utf-8'))  # ****For testing purpose only #For dates use encode('utf-8')
+        <ul type="circle"><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1"><li>CDRM: {}</li></a>
+        </ul></ul></body></html>
+    """.format(str(finalList1[7].encode('utf-8')),finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))  # ****For testing purpose only #For dates use encode('utf-8')
     return msg
 
 def generate_html_for_preflight_list(finalList2):
@@ -165,3 +165,8 @@ def generate_html_for_preflight_list(finalList2):
 
 #Code to remove duplicates
 #def cleanup_list(finalList):
+
+#Code to get preflight label
+# def getP4faLabel():
+#     s = requests.session()
+#     s.get()
