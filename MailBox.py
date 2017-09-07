@@ -67,7 +67,7 @@ def fetch_body(mail, uidsList):
                 currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
                 topology = str(val[4].encode('utf-8')) # This returns the topology
                 envType = str(dtetablesList[i][3].encode('utf-8'))  #Checking for CDRM or STARTER
-                if ((reqDate >= currentDate) and ((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
+                if (((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals for ananlysis date.
                     print "{} is true".format(analysisDueDate.encode('utf-8'))
                     print "appending list before sending it to mail"
                     #for i,val in enumerate(dtetablesList[i]):
@@ -75,10 +75,10 @@ def fetch_body(mail, uidsList):
                     print "appending complete"
                     flag = True
                 else:
-                    print "Analysis date didnot pass the validation continuing with the next mail for {}".format(dtetablesList[0])
+                    print "Analysis date or Topology validation didnot pass the validation continuing with the next mail"
                     flag = False
             if(flag == True):
-                finalMailingList.append(dtetablesList[2]) #Append only when the condition is satisfied
+                finalMailingList.append(dtetablesList[2]) #Append preflight details only when the condition is satisfied
         #Logic if the dtetablesList contains one row i.e CDRM or starter then comparing for its due date with today
         elif(len(dtetablesList)==2):
             try:
@@ -109,8 +109,34 @@ def fetch_body(mail, uidsList):
                 flag = False
             if(flag == True):
                 finalMailingList.append(dtetablesList[1]) #Append only when the condition is satisfied
-        else:
-            continue
+        #Logic if the dtetablesList contains more than two rows and this checks only for CDRM mails
+        elif(len(dtetablesList)>3):
+            for i,val in enumerate(dtetablesList[:-1]):
+                try:
+                    analysisDueDate=str(val[7].encode('utf-8')).strip().decode('utf-8')  # This returns you the Analysis date of CDRM
+                except IndexError:
+                    print "Error occurred with Analysis date Index"
+                analysisDueDate = analysisDueDate.replace("Sept", "Sep")
+                print "length of analysis date {}".format(len(analysisDueDate))
+                if (re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)):  # Matches pattern at start of string
+                    resp = re.match(r'[^\s]+\. [0-9]+, [0-9]+', analysisDueDate)
+                    reqDate = validate_date(resp.group(0))
+                else:
+                    print "Analysis date not found at start of the string"
+                currentDate = datetime.datetime.now().strftime("%Y-%m-%d")
+                topology = str(val[4].encode('utf-8'))  # This returns the topology
+                envType = str(dtetablesList[i][3].encode('utf-8'))  # Checking for CDRM or STARTER
+                if ((reqDate >= currentDate)and((topology == "GSI") or (topology == "FSCM"))and(envType=="CDRM")):  # For testing purpose only, have to change the logic to equals for ananlysis date.
+                    print "{} is true".format(analysisDueDate.encode('utf-8'))
+                    print "appending list before sending it to mail"
+                    finalMailingList.append(dtetablesList[i])
+                    print "appending complete"
+                    flag = True
+                else:
+                    print "Analysis date or Topology validation didnot pass the validation continuing with the next mail"
+                    #flag = False
+            if (flag == True): # Have to check on what happens when flag returns as false
+                finalMailingList.append(dtetablesList[-1])  # Append preflight details only when the condition is satisfied
     return finalMailingList
 
 
