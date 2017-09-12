@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/EmailSend.py" afterPath="$PROJECT_DIR$/EmailSend.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MailBox.py" afterPath="$PROJECT_DIR$/MailBox.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notifier.html" afterPath="$PROJECT_DIR$/Notifier.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +16,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/EmailNotifier$UnReadEmails.coverage" NAME="UnReadEmails Coverage Results" MODIFIED="1503639223882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$Notifier.coverage" NAME="Notifier Coverage Results" MODIFIED="1503639235988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/EmailNotifier$Mailbox.coverage" NAME="Mailbox Coverage Results" MODIFIED="1504806596513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EmailNotifier$Mailbox.coverage" NAME="Mailbox Coverage Results" MODIFIED="1505233864103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$demo.coverage" NAME="demo Coverage Results" MODIFIED="1503754159638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$test_list.coverage" NAME="test_list Coverage Results" MODIFIED="1504517637820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$EmailSend.coverage" NAME="EmailSend Coverage Results" MODIFIED="1503664021191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -27,27 +26,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="EmailSend.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmailSend.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EmailSend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="114" column="35" lean-forward="true" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
+            <state relative-caret-position="154">
+              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
-                <element signature="e#5590#6012#0" expanded="false" />
-                <element signature="e#6430#6456#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-              <folding>
-                <element signature="n#style#0;n#li#0;n#ul#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,11 +41,24 @@
       <file leaf-file-name="MailBox.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MailBox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="804">
-              <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+            <state relative-caret-position="418">
+              <caret line="19" column="56" lean-forward="false" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
-                <element signature="e#10979#11058#0" expanded="false" />
+                <element signature="e#10843#10922#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TableFormat.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TableFormat.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding>
+                <element signature="e#24#38#0" expanded="true" />
+                <element signature="e#2567#3635#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -71,8 +69,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -84,6 +82,8 @@
       <find>PLeasefin</find>
       <find>Analysis date or Topology validation didnot pass the validation continuing with the next mail</find>
       <find>dispos</find>
+      <find>5677</find>
+      <find>main</find>
     </findStrings>
     <replaceStrings>
       <replace>email_message_instance</replace>
@@ -94,6 +94,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/UnReadEmails.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/TableFormat.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/MailBox.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/EmailSend.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/test_list.py" root0="SKIP_INSPECTION" />
@@ -110,13 +111,15 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/ssig.html" />
         <option value="$PROJECT_DIR$/sig.html" />
-        <option value="$PROJECT_DIR$/123.html" />
         <option value="$PROJECT_DIR$/test_list.py" />
         <option value="$PROJECT_DIR$/1711Notifier.html" />
         <option value="$PROJECT_DIR$/Notifier.html" />
-        <option value="$PROJECT_DIR$/MailBox.py" />
         <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/SSHConnect.py" />
+        <option value="$PROJECT_DIR$/123.html" />
         <option value="$PROJECT_DIR$/EmailSend.py" />
+        <option value="$PROJECT_DIR$/TableFormat.py" />
+        <option value="$PROJECT_DIR$/MailBox.py" />
       </list>
     </option>
   </component>
@@ -148,7 +151,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -160,6 +162,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -355,24 +358,31 @@
       <option name="project" value="LOCAL" />
       <updated>1504632517522</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Update on CDRM and Starter code in EmailSend.py">
+      <created>1504806656224</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1504806656224</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14427084" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14427084" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.307947" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30905077" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27183408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21822916" sideWeight="0.5147059" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27783668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -446,20 +456,21 @@
     <MESSAGE value="Updated with CDRM logic" />
     <MESSAGE value="Added links for CDRM and able to send mail for CDRM only" />
     <MESSAGE value="Added CDRM and Starter code in EmailSend.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added CDRM and Starter code in EmailSend.py" />
+    <MESSAGE value="Update on CDRM and Starter code in EmailSend.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update on CDRM and Starter code in EmailSend.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/EmailSend.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="121" />
+          <url>file://$PROJECT_DIR$/MailBox.py</url>
+          <line>304</line>
+          <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MailBox.py</url>
-          <line>114</line>
-          <option name="timeStamp" value="128" />
+          <url>file://$PROJECT_DIR$/TableFormat.py</url>
+          <line>43</line>
+          <option name="timeStamp" value="157" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -469,34 +480,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="129" />
+      <option name="time" value="158" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MailBox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="45" column="113" lean-forward="true" selection-start-line="45" selection-start-column="113" selection-end-line="45" selection-end-column="113" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10979#11058#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EmailSend.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="32" column="11" lean-forward="true" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/1711Notifier.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
@@ -510,7 +498,7 @@
           <caret line="138" column="22" lean-forward="true" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10979#11058#0" expanded="false" />
+            <element signature="e#10843#10922#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -521,8 +509,6 @@
           <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -533,8 +519,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -553,7 +537,7 @@
           <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10979#11058#0" expanded="false" />
+            <element signature="e#10843#10922#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -564,8 +548,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -584,7 +566,7 @@
           <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10979#11058#0" expanded="false" />
+            <element signature="e#10843#10922#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -603,7 +585,7 @@
           <caret line="107" column="62" lean-forward="false" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10979#11058#0" expanded="false" />
+            <element signature="e#10843#10922#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -614,8 +596,6 @@
           <caret line="168" column="0" lean-forward="true" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -627,8 +607,6 @@
           <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -654,8 +632,6 @@
           <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -674,8 +650,6 @@
           <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -748,7 +722,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ssig.html" />
     <entry file="file://$PROJECT_DIR$/sig.html" />
-    <entry file="file://$PROJECT_DIR$/123.html" />
     <entry file="file://$PROJECT_DIR$/test_list.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -770,43 +743,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MailBox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
-          <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10979#11058#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Notifier.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
+    <entry file="file://$PROJECT_DIR$/SSHConnect.py" />
+    <entry file="file://$PROJECT_DIR$/test.html" />
+    <entry file="file://$PROJECT_DIR$/123.html" />
+    <entry file="file://$PROJECT_DIR$/EmailSend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="154">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
           <folding>
-            <element signature="n#style#0;n#li#0;n#ul#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#24#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EmailSend.py">
+    <entry file="file://$PROJECT_DIR$/MailBox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="114" column="35" lean-forward="true" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
+        <state relative-caret-position="418">
+          <caret line="19" column="56" lean-forward="false" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#5590#6012#0" expanded="false" />
-            <element signature="e#6430#6456#0" expanded="false" />
+            <element signature="e#10843#10922#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TableFormat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#38#0" expanded="true" />
+            <element signature="e#2567#3635#0" expanded="false" />
           </folding>
         </state>
       </provider>

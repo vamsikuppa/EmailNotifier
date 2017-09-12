@@ -6,22 +6,24 @@ from email.mime.text import MIMEText
 import datetime
 
 
+ranCDRM=False
+ranStarter=False
 
 def send_mail(finalList):
     # me == my email address
     # you == recipient's email address
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    #recipients = ['vamsi.k.kuppa@oracle.com','shashank.sahay@oracle.com']
+    recipients = ['vamsi.k.kuppa@oracle.com','shashank.sahay@oracle.com','ankita.yerawar@oracle.com','anudeep.tangudu@oracle.com','kalva.avinash@oracle.com']
     #you = "sasasriv_org_ww@oracle.com"
-    you = "vamsi.k.kuppa@oracle.com"
+    #you = "vamsi.k.kuppa@oracle.com"
 
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Automation Notifier - " + todaysDate
     msg['From'] = me
-    #msg['To'] = ", ".join(recipients)
-    msg['To'] = you
+    msg['To'] = ", ".join(recipients)
+    #msg['To'] = you
     # Create the body of the message (a plain-text and an HTML version).
     text = "#DispositionsDUE Today: Please find the priorities below:"
     html = """\
@@ -83,6 +85,8 @@ def send_mail(finalList):
                     chunks.append(append_analysisdate_for_dte_list(el)) #Append analysis date once
                     run_once = False
                 chunks.append(generate_html_for_dte_list(el))  # Pass on the dte table details
+                #if(ranCDRM==True):
+
                 flag = True
                 break
         if(flag==True):
@@ -97,7 +101,8 @@ def send_mail(finalList):
     s.login(me, "Skyfall@1")
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    s.sendmail(me, you, msg.as_string())
+    #s.sendmail(me, you, msg.as_string())
+    s.sendmail(me, recipients, msg.as_string())
     s.quit()
 
 
@@ -111,18 +116,20 @@ def generate_html_for_dte_list(finalList1):
     except IndexError:
         print "Env Type Index Error occurred"
     if(envType == "CDRM"):
-        msg = """<ul type="circle"><li>CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></li>
-                    </ul></ul></ul>
-                    """.format(finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))  # ****For testing purpose only #For dates use encode('utf-8')
-        return msg
+        msg = """<li>CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></li>
+                    </ul></ul>
+                    """.format(finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))
+        ranCDRM=True
+        #return msg
     else:
-        msg = """<ul type="circle"><li>STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></li>
-                </ul></body></html>
-                """.format(finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))  # ****For testing purpose only #For dates use encode('utf-8')
-        return msg
+        msg = """<ul><ul><li>STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></li>
+                </ul></ul></ul></ul>
+                """.format(finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))
+        ranStarter=True
+        #return msg
+    return msg
 
 def generate_html_for_preflight_list(finalList2):
-    #Encoding problem here
     finalList3=[]
     for x in finalList2:
         flag = False
@@ -133,21 +140,23 @@ def generate_html_for_preflight_list(finalList2):
             continue
     #finalList3 now contains data encoded in utf-8
     msg="""<ul type="disc"><li>Preflight: {}</li>
-    <ul><li>Purpose: {}</li></ul>
+    <ul><li>Purpose: {}</li>
     """.format(finalList3[0],finalList3[3])
     return msg
 
 
 def append_analysisdate_for_dte_list(finalList1):
-    msg = """<ul><li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2level1 lfo2">
+    msg = """<li class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2level1 lfo2">
                     <font color="#ff0000">Analysis due date: {}</font></li>
                     """.format(str(finalList1[7].encode('utf-8')).decode('utf-8').replace(u"\xa0"," ").encode('utf-8')) # To replace ascii character
     return msg
 
 
+def close_two_uls():
+    msg="""</ul></ul>"""
+def close_three_uls():
+    msg="""</ul></ul></ul>"""
 
-#Code to remove duplicates
-#def cleanup_list(finalList):
 
 #Code to get preflight label
 # def getP4faLabel():

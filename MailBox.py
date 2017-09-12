@@ -7,9 +7,9 @@ from bs4 import BeautifulSoup
 import EmailSend
 import re
 import requests
+import TableFormat
 
-
-def init(host, username, password):
+def preFlightMailsInit(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
     mail.login(username, password)
     mail.select("PreflightMails", readonly=1)
@@ -17,8 +17,7 @@ def init(host, username, password):
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y")  # Change logic here for daterange
-    #date = (datetime.datetime.today() - datetime.timedelta(2)).strftime("%d-%b-%Y:%H-%M-%S")
+    date = (datetime.date.today() - datetime.timedelta(4)).strftime("%d-%b-%Y")  # Change logic here for daterange
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
     # result, data = mail.search(None, '(UNSEEN)')  # to get the unread emails #Always use mail.search() here
@@ -39,6 +38,8 @@ def fetch_body(mail, uidsList):
     finalMailingList = []
     print "There are {} mails found".format(len(uidsList))
     for uid in uidsList:
+        if(uid == "67"):
+            continue
         flag = False
         # result, data = mail.fetch(uid, "(RFC822)")  # fetch the email body (RFC822) for the given ID
         # raw_email = data[0][1]  # here's the body, which is raw text of the whole email # including headers and alternate payloads
@@ -97,7 +98,7 @@ def fetch_body(mail, uidsList):
             envType = str(dtetablesList[0][3].encode('utf-8'))
             #Checking GSI or FSCM topology
             topology = str(dtetablesList[0][4].encode('utf-8'))
-            if ((reqDate >= currentDate)and((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
+            if (((topology=="GSI") or (topology=="FSCM"))):  # For testing purpose only, have to change the logic to equals.
                 print "{} is true".format(analysisDueDate.encode('utf-8'))
                 print "appending list before sending it to mail"
                 #for i,val in enumerate(dtetablesList):
@@ -171,8 +172,6 @@ def get_table(tree):
     # Logic for dte table contains multiple rows (CDRM and DTE)
     if(len(rows)>1):
         dteTableRowsData=[[td.text.strip() for td in rows[i].find_all('td')] for i in range(len(rows))]
-        # for i,val in enumerate(preflightsList):
-        #     dteTableRowsData.append(val)
         dteTableRowsData.append(preflightsList)
         return dteTableRowsData # This will return both DTE and the preflight details
     #Logic for single row in dte table
@@ -211,26 +210,104 @@ def main():
     host = "stbeehive.oracle.com"
     username = "vamsi.k.kuppa@oracle.com"
     password = "Skyfall@1"
-    mail = init(host, username, password)
-    uidsList = get_uids(mail)
+    # Logic to get Daily run mails
+    # dailyRunMails=dailyRunsMailsInit(host,username,password)
+    # dailyRunuids = get_uids(dailyRunMails)
+    # if(len(dailyRunuids)>0):
+    #     finalDailyRunsList=fetchDailyRunsBody(dailyRunMails,dailyRunuids)
+    # else:
+    #     print "No Daily runs found. Resuming with preflight mails"
+    #Logic for preflight mails
+    preflightmails = preFlightMailsInit(host, username, password)
+    uidsList = get_uids(preflightmails)
     # fetch_header(mail, uidsList) #Write code here to fetch headers
     if(len(uidsList)>0): #Check for mAails count
-        finalMailingList = fetch_body(mail, uidsList)  # The Final Maliling List that need to be sent
+        finalMailingList = fetch_body(preflightmails, uidsList)  # The Final Maliling List that need to be sent
         if(len(finalMailingList)==0):
             print "Analysis date validation did not pass"
-            exit(mail)
+            exit(preflightmails)
             return
-        print "This is the final list that will be printed in mail"
+        print "This is the final preflight mails that will be printed in mail"
         print finalMailingList
-        #test_list.list_iterate(finalMailingList)
-        EmailSend.send_mail(finalMailingList)
-        exit(mail)
+        #EmailSend.send_mail(finalMailingList)
+        TableFormat.tableFormat(finalMailingList)
+
     else:
         print "No mails found. Exiting the mailbox notifier"
-        exit(mail)
+    exit(preflightmails)
+
+def dailyRunsMailsInit(host, username, password):
+    mail = imaplib.IMAP4_SSL(host)
+    mail.login(username, password)
+    mail.select("DailyRuns", readonly=1)
+    return mail
+
+def fetchDailyRunsBody(mail,uidsList):
+    finaldteTablesList=[]
+    dtetablesList=[]
+    print "There are {} mails found".format(len(uidsList))
+    for uid in uidsList:
+        flag = False
+        result, data = mail.fetch(uid,
+                                  "(UID BODY[TEXT])")  # Alternative way of fetching message body , ref; https://stackoverflow.com/questions/19540192/imap-get-sender-name-and-body-text
+        msg = email.message_from_string(data[0][1])
+        htmlbody = get_text_block(msg)
+        if(htmlbody != ''):
+            tree = BeautifulSoup(htmlbody, "lxml")  # Never return the tree here as it will take only the last return
+            dailyRunsList = []
+            dailyRunsTable = tree.find("table")
+            dailyRunsTableRows = []
+            dailyRunsTableRows = dailyRunsTable.find_all('tr')
+            if not dailyRunsTableRows:
+                dteIdRow = dailyRunsTableRows[0]  # To get the DTE ID
+                dailyRunsTableCols = dteIdRow.find_all('td')
+                for i,dailyRunsTableColEle in enumerate(dailyRunsTableCols):
+                    if(i==1):
+                        dteId=dailyRunsTableColEle.text.strip().encode('utf-8')
+                        dtetablesList.append(dteId)
+                    else:
+                        continue
+                try:
+                    envNameRow = dailyRunsTableRows[1] # To get the Env Name
+                    dailyRunsTableCols = envNameRow.find_all('td')
+                    for i, dailyRunsTableColEle in enumerate(dailyRunsTableCols):
+                        if (i == 1):
+                            envName = dailyRunsTableColEle.text.strip().encode('utf-8')
+                            dtetablesList.append(envName)
+                        else:
+                            continue
+                except IndexError:
+                    print "Error in finding envNameRow for mail {}".format(msg)
+                try:
+                    faatLabelRow = dailyRunsTableRows[5] # To get the FAAT Label
+                    dailyRunsTableCols = faatLabelRow.find_all('td')
+                    for i, dailyRunsTableColEle in enumerate(dailyRunsTableCols):
+                        if (i == 1):
+                            faatLabel = dailyRunsTableColEle.text.strip().encode('utf-8')
+                            dtetablesList.append(faatLabel)
+                        else:
+                            continue
+                except IndexError:
+                    print "Error i finding FAAT Label row for mail {}".format(msg)
+                try:
+                    purposeRow = dailyRunsTableRows[6] # To get the purpose row
+                    dailyRunsTableCols = purposeRow.find_all('td')
+                    for i, dailyRunsTableColEle in enumerate(dailyRunsTableCols):
+                        purpose = dailyRunsTableColEle.text.strip().encode('utf-8')
+                    dtetablesList.append(purpose)
+                except IndexError:
+                    print 'Error in finding Purpose row in mail {}'.format(msg)
+
+            else:
+                continue
+        if not dtetablesList:
+            continue
+        finaldteTablesList.append(dtetablesList)
+        print finaldteTablesList
+
+
 
 
 if __name__ == '__main__':
     main()
-
 
