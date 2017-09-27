@@ -14,16 +14,16 @@ def send_mail(finalList):
     # you == recipient's email address
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    recipients = ['vamsi.k.kuppa@oracle.com','shashank.sahay@oracle.com','ankita.yerawar@oracle.com','anudeep.tangudu@oracle.com','kalva.avinash@oracle.com']
+    #recipients = ['vamsi.k.kuppa@oracle.com','shashank.sahay@oracle.com','ankita.yerawar@oracle.com','anudeep.tangudu@oracle.com','kalva.avinash@oracle.com']
     #you = "sasasriv_org_ww@oracle.com"
-    #you = "vamsi.k.kuppa@oracle.com"
+    you = "vamsi.k.kuppa@oracle.com"
 
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Automation Notifier - " + todaysDate
+    msg['Subject'] = "FinTech Automation Notifier - " + todaysDate
     msg['From'] = me
-    msg['To'] = ", ".join(recipients)
-    #msg['To'] = you
+    #msg['To'] = ", ".join(recipients)
+    msg['To'] = you
     # Create the body of the message (a plain-text and an HTML version).
     text = "#DispositionsDUE Today: Please find the priorities below:"
     html = """\
@@ -101,8 +101,8 @@ def send_mail(finalList):
     s.login(me, "Skyfall@1")
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    #s.sendmail(me, you, msg.as_string())
-    s.sendmail(me, recipients, msg.as_string())
+    s.sendmail(me, you, msg.as_string())
+    #s.sendmail(me, recipients, msg.as_string())
     s.quit()
 
 
@@ -122,8 +122,8 @@ def generate_html_for_dte_list(finalList1):
         ranCDRM=True
         #return msg
     else:
-        msg = """<ul><ul><li>STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></li>
-                </ul></ul></ul></ul>
+        msg = """<li>STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></li>
+                </ul></ul>
                 """.format(finalList1[0].encode('utf-8'),finalList1[0].encode('utf-8'))
         ranStarter=True
         #return msg

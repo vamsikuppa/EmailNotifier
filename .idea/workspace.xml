@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b69ed016-930e-4a64-a5c9-59bab0aefcf2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TableFormat.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dailyRuns.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/EmailSend.py" afterPath="$PROJECT_DIR$/EmailSend.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MailBox.py" afterPath="$PROJECT_DIR$/MailBox.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notifier.html" afterPath="$PROJECT_DIR$/Notifier.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TableFormat.py" afterPath="$PROJECT_DIR$/TableFormat.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,7 +19,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/EmailNotifier$UnReadEmails.coverage" NAME="UnReadEmails Coverage Results" MODIFIED="1503639223882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$Notifier.coverage" NAME="Notifier Coverage Results" MODIFIED="1503639235988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/EmailNotifier$Mailbox.coverage" NAME="Mailbox Coverage Results" MODIFIED="1505233864103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EmailNotifier$Mailbox.coverage" NAME="Mailbox Coverage Results" MODIFIED="1506477548048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$demo.coverage" NAME="demo Coverage Results" MODIFIED="1503754159638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$test_list.coverage" NAME="test_list Coverage Results" MODIFIED="1504517637820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EmailNotifier$EmailSend.coverage" NAME="EmailSend Coverage Results" MODIFIED="1503664021191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -25,26 +29,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="EmailSend.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EmailSend.py">
+      <file leaf-file-name="MailBox.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MailBox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="5376">
+              <caret line="233" column="46" lean-forward="false" selection-start-line="233" selection-start-column="46" selection-end-line="233" selection-end-column="46" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
+                <element signature="e#10918#10997#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MailBox.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MailBox.py">
+      <file leaf-file-name="dailyRuns.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dailyRuns.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="19" column="56" lean-forward="false" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+            <state relative-caret-position="528">
+              <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
-                <element signature="e#10843#10922#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,11 +57,11 @@
       <file leaf-file-name="TableFormat.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TableFormat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="179" column="78" lean-forward="false" selection-start-line="179" selection-start-column="78" selection-end-line="179" selection-end-column="78" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
-                <element signature="e#2567#3635#0" expanded="false" />
+                <element signature="e#742#7381#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -83,20 +87,35 @@
       <find>dispos</find>
       <find>5677</find>
       <find>main</find>
+      <find>Due</find>
+      <find>POC</find>
+      <find>dtetablesList</find>
+      <find>test</find>
+      <find>smaller</find>
+      <find>you</find>
+      <find>Please find the priorities</find>
+      <find>dash</find>
+      <find>small</find>
+      <find>S</find>
+      <find>Du</find>
+      <find>Ana</find>
     </findStrings>
     <replaceStrings>
       <replace>email_message_instance</replace>
+      <replace>finalDteIdDetailsList</replace>
+      <replace>medium</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/dailyRuns.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/UnReadEmails.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/test_list.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/TableFormat.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/MailBox.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/EmailSend.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/test_list.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -110,15 +129,16 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/ssig.html" />
         <option value="$PROJECT_DIR$/sig.html" />
-        <option value="$PROJECT_DIR$/test_list.py" />
         <option value="$PROJECT_DIR$/1711Notifier.html" />
-        <option value="$PROJECT_DIR$/Notifier.html" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/SSHConnect.py" />
         <option value="$PROJECT_DIR$/123.html" />
         <option value="$PROJECT_DIR$/EmailSend.py" />
-        <option value="$PROJECT_DIR$/TableFormat.py" />
+        <option value="$PROJECT_DIR$/Notifier.html" />
+        <option value="$PROJECT_DIR$/test_list.py" />
+        <option value="$PROJECT_DIR$/dailyRuns.py" />
         <option value="$PROJECT_DIR$/MailBox.py" />
+        <option value="$PROJECT_DIR$/TableFormat.py" />
       </list>
     </option>
   </component>
@@ -132,7 +152,7 @@
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="height" value="1058" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -150,6 +170,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -161,13 +182,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_list.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="add_unversioned_files" value="true" />
@@ -371,24 +391,31 @@
       <option name="project" value="LOCAL" />
       <updated>1505233912036</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added the Table format in TableFormat.py">
+      <created>1505234118381</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1505234118381</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14427084" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1944146" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.307947" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29840547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27183408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21822916" sideWeight="0.5147059" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26914415" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -406,19 +433,19 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30905077" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14427084" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15778251" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27065217" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21822916" sideWeight="0.5147059" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27783668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -470,14 +497,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MailBox.py</url>
-          <line>304</line>
-          <option name="timeStamp" value="146" />
+          <url>file://$PROJECT_DIR$/test_list.py</url>
+          <line>5</line>
+          <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/TableFormat.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="157" />
+          <line>152</line>
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TableFormat.py</url>
+          <line>274</line>
+          <option name="timeStamp" value="179" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -487,25 +519,18 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="158" />
+      <option name="time" value="180" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/1711Notifier.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="24" column="65" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MailBox.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3312">
           <caret line="138" column="22" lean-forward="true" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10843#10922#0" expanded="false" />
+            <element signature="e#10918#10997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -514,9 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="864">
           <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -524,9 +546,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -544,7 +563,7 @@
           <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10843#10922#0" expanded="false" />
+            <element signature="e#10918#10997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -553,9 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -573,7 +589,7 @@
           <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10843#10922#0" expanded="false" />
+            <element signature="e#10918#10997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -592,7 +608,7 @@
           <caret line="107" column="62" lean-forward="false" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10843#10922#0" expanded="false" />
+            <element signature="e#10918#10997#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -601,9 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3465">
           <caret line="168" column="0" lean-forward="true" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -612,9 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -637,9 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -655,9 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -729,17 +733,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ssig.html" />
     <entry file="file://$PROJECT_DIR$/sig.html" />
-    <entry file="file://$PROJECT_DIR$/test_list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/1711Notifier.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSHConnect.py" />
+    <entry file="file://$PROJECT_DIR$/test.html" />
+    <entry file="file://$PROJECT_DIR$/123.html" />
+    <entry file="file://$PROJECT_DIR$/Notifier.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="58" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="92" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -750,20 +765,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Notifier.html">
+    <entry file="file://$PROJECT_DIR$/EmailSend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="-2788">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SSHConnect.py" />
-    <entry file="file://$PROJECT_DIR$/test.html" />
-    <entry file="file://$PROJECT_DIR$/123.html" />
-    <entry file="file://$PROJECT_DIR$/EmailSend.py">
+    <entry file="file://$PROJECT_DIR$/dailyRuns.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        <state relative-caret-position="528">
+          <caret line="24" column="35" lean-forward="false" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
           </folding>
@@ -772,22 +784,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MailBox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="56" lean-forward="false" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+        <state relative-caret-position="5376">
+          <caret line="233" column="46" lean-forward="false" selection-start-line="233" selection-start-column="46" selection-end-line="233" selection-end-column="46" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#10843#10922#0" expanded="false" />
+            <element signature="e#10918#10997#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TableFormat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="179" column="78" lean-forward="false" selection-start-line="179" selection-start-column="78" selection-end-line="179" selection-end-column="78" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#2567#3635#0" expanded="false" />
+            <element signature="e#742#7381#0" expanded="false" />
           </folding>
         </state>
       </provider>
