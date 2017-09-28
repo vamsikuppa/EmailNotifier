@@ -3,12 +3,12 @@ import imaplib
 import email
 from bs4 import BeautifulSoup
 
-
 def dailyRunsMailsInit(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
     mail.login(username, password)
-    mail.select("PRCDailyRuns", readonly=1)
+    mail.select("FTEDailyRuns", readonly=1)
     return mail
+
 
 def get_text_block(email_message_instance):
     if email_message_instance.is_multipart():
@@ -20,13 +20,13 @@ def get_text_block(email_message_instance):
 
 
 def fetchDailyRunsBody(mail, uidsList):
-    finalDailyRunMailList = []
+    finalFTEDailyRunMailList = []
     dailyRunMailList = []
-    print "There are {} PRC Daily runs mails found".format(len(uidsList))
+    print "There are {} FTE Daily runs mails found".format(len(uidsList))
     for uid in uidsList:
         flag = False
         result, data = mail.fetch(uid,
-                                  "(UID BODY[TEXT])")  # Alternative way of fetching message body , ref; https://stackoverflow.com/questions/19540192/imap-get-sender-name-and-body-text
+                                  "(UID BODY[])")  # Alternative way of fetching message body , ref; https://stackoverflow.com/questions/19540192/imap-get-sender-name-and-body-text
         msg = email.message_from_string(data[0][1])
         htmlbody = get_text_block(msg)
         if (htmlbody != ''):
@@ -39,9 +39,9 @@ def fetchDailyRunsBody(mail, uidsList):
                 try:
                     dteIdRow = dailyRunsTableRows[0]  # To get the DTE ID
                     envNameRow = dailyRunsTableRows[1]  # To get the Env Name
-                    purposeRow = dailyRunsTableRows[7]  # To get the purpose row
+                    # purposeRow = dailyRunsTableRows[7]  # To get the purpose row
                 except IndexError:
-                    "Occurred Index Error for fetching dte id or Env row or purpose rows"
+                    "Occurred Index Error for fetching dte id or Env row"
                 #DTE ID Row
                 dailyRunsTableCols = dteIdRow.find_all('td')
                 for i, dailyRunsTableColEle in enumerate(dailyRunsTableCols):
@@ -59,17 +59,17 @@ def fetchDailyRunsBody(mail, uidsList):
                     else:
                         continue
                 #Purpose row
-                dailyRunsTableCols = purposeRow.find_all('td')
-                for i, dailyRunsTableColEle in enumerate(dailyRunsTableCols):
-                    if (i == 1):
-                        purposeName = dailyRunsTableColEle.text.strip().encode('utf-8')
-                        dailyRunMailList.append(purposeName)
-                    else:
-                        continue
+                # dailyRunsTableCols = purposeRow.find_all('td')
+                # for i, dailyRunsTableColEle in enumerate(dailyRunsTableCols):
+                #     if (i == 1):
+                #         purposeName = dailyRunsTableColEle.text.strip().encode('utf-8')
+                #         dailyRunMailList.append(purposeName)
+                #     else:
+                #         continue
             else:
                 continue
         if not dailyRunMailList:
             continue
-        finalDailyRunMailList.append(dailyRunMailList)
+        finalFTEDailyRunMailList.append(dailyRunMailList)
         dailyRunMailList=[]
-    return finalDailyRunMailList
+    return finalFTEDailyRunMailList

@@ -6,11 +6,11 @@ from email.mime.text import MIMEText
 import datetime
 
 
-def tableFormat(finalList, finalDailyRunsList):
+def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    #you = "vamsi.k.kuppa@oracle.com"
-    you = "sasasriv_org_ww@oracle.com"
+    you = "vamsi.k.kuppa@oracle.com"
+    #you = "sasasriv_org_ww@oracle.com"
     recipients = ['vamsi.k.kuppa@oracle.com', 'shashank.sahay@oracle.com', 'ankita.yerawar@oracle.com',
                   'anudeep.tangudu@oracle.com', 'kalva.avinash@oracle.com']
     msg = MIMEMultipart('alternative')
@@ -54,7 +54,7 @@ def tableFormat(finalList, finalDailyRunsList):
                                                         </span></li>
                                                         <ul>
                                                             <span style="color: #3366ff; "> </span>
-                                                            <li><span style="color: #3366ff; ">1802B_P4FA – FIN
+                                                            <li><span style="color: #3366ff; ">1802B_P4FA FIN
                                                                 bug having Techstack bug as Base bug</span></li>
                                                             <span style="color: #3366ff; "> </span>
                                                             <li><span style="color: #3366ff; ">1802B_INTERMITTENT
@@ -105,9 +105,17 @@ def tableFormat(finalList, finalDailyRunsList):
                     </div>
                 </div>
             </div>
-            </body>
-            </html>
         """
+    signature = """</tbody>
+                </table>
+            <p> -- DO NOT "reply-all", send your queries to - <a
+                  href="mailto:fusion_fin_automation_ww_grp@oracle.com"
+                  moz-do-not-send="true">fusion_fin_automation_ww_grp@oracle.com</a></p>
+              <p> </p>
+              <p> -- Fintech Automation </p>
+              </body>
+            </html>
+    """
     chunks = []
     stringChunks = ""
     chunks.append(addTableHeaders())
@@ -146,11 +154,16 @@ def tableFormat(finalList, finalDailyRunsList):
                     break
             continue
     for i, x in enumerate(chunks):
-        stringChunks = stringChunks + str(x)
-    if finalDailyRunsList is None:
-        listHtml1 = html + stringChunks
-    else:
-        listHtml1 = html + stringChunks + createTableForDailyRuns(finalDailyRunsList)
+        stringChunks = stringChunks + str(x) #Both are none
+    if finalPRCDailyRunsList and finalFTEDailyRunsList is None:
+        listHtml1 = html + stringChunks + signature
+    elif finalFTEDailyRunsList is None: #Only PRC Mails
+        listHtml1 = html + stringChunks + createTableForPRCDailyRuns(finalPRCDailyRunsList) + signature
+    elif finalPRCDailyRunsList is None: # Only FTE Mails
+        listHtml1 = html + stringChunks + createTableForFTEDailyRuns(finalFTEDailyRunsList) + signature
+    else: # Everything
+        listHtml1 = html + stringChunks + createTableForPRCDailyRuns(finalPRCDailyRunsList) + createTableForFTEDailyRuns(finalFTEDailyRunsList) + signature
+
     part3 = MIMEText(listHtml1, 'html')
     msg.attach(part3)  # ****** This is Working :)
     s = smtplib.SMTP_SSL('stbeehive.oracle.com')
@@ -163,24 +176,23 @@ def tableFormat(finalList, finalDailyRunsList):
 
 
 def addTableHeaders():
-    msg = """<table height="59" border="1" cellpadding="2" cellspacing="2"
-       width="100%">
+    msg = """<table height="59" cellspacing="2" cellpadding="2" height="90" width="1353" border="1">
     <tbody>
     <tr>
         <th bgcolor="#cccccc" valign="top"><span style="font-family:
-                  sans-serif; font-size: medium;width:10% "><b>Priority/Comments</b><br>
+                  sans-serif; font-size: medium;width:100px  "><b>Priority/Comments</b><br>
         </span></th>
         <th bgcolor="#ff0000" valign="top"><span style="font-family:
-                   sans-serif; color: #ffffff; font-size: medium;width:40% ">Environment<br>
+                   sans-serif; color: #ffffff; font-size: medium;width:400px  ">Environment<br>
         </span></th>
         <th bgcolor="#ff0000" valign="top"><span style="font-family:
-                   sans-serif; color: #ffffff; font-size: medium;width:20% ">Purpose<br>
+                   sans-serif; color: #ffffff; font-size: medium;width:200px  ">Purpose<br>
         </span></th>
         <th bgcolor="#ff0000" valign="top"><span style="font-family:
-                   sans-serif; color: #ffffff; font-size: medium;width:15% ">Due date<br>
+                   sans-serif; color: #ffffff; font-size: medium;width:150px  ">Analysis due date<br>
         </span></th>
         <th bgcolor="#ff0000" valign="top"><span style="font-family:
-                   sans-serif; color: #ffffff; font-size: medium; width:15%">DTE ID<br>
+                   sans-serif; color: #ffffff; font-size: medium; width:150px ">DTE ID<br>
         </span></th>
     </tr>
     """
@@ -193,17 +205,17 @@ def generate_html_for_dte_list(finalList1, i=None):
             envType = str(finalList1[3].encode('utf-8'))
         except IndexError:
             print "Env Type Index Error occurred"
-        msg = """<td valign="top"><span style="font-family:  sans-serif; font-size: medium; ">{}</span></td>
+        msg = """<td valign="top"><span style="font-family:  sans-serif; font-size: medium;width:150px  ">{}</span></td>
                             """.format(str(finalList1[7].encode('utf-8')).decode('utf-8').replace(u"\xa0", " ").encode(
             'utf-8'))  # For appending analysis due date
         msg += """<td valign="top">"""
         if (envType == "CDRM"):
             msg += """<span
-                    style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:15% ">CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
+                    style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:150px">CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
                             </span>
                             """.format(finalList1[0].encode('utf-8'), finalList1[0].encode('utf-8'))
         else:
-            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:15% ">STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
+            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:150px">STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
                         </span>
                         """.format(finalList1[0].encode('utf-8'), finalList1[0].encode('utf-8'))
 
@@ -218,23 +230,23 @@ def generate_html_for_dte_list(finalList1, i=None):
             analysisDueDate2 = str(i[7].encode('utf-8')).decode('utf-8').replace(u"\xa0", " ").encode('utf-8')
         except IndexError:
             print "Env Type and DTE ID Index Error occurred"
-        msg = """<td valign="top"><span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:15% ">{}</span></td>
+        msg = """<td valign="top"><span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:150px  ">{}</span></td>
                             """.format(analysisDueDate1)
         msg += """<td valign="top">"""
         if (envType1 == "CDRM"):
-            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:15% ">CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
+            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:150px  ">CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
                                         </span>
                                         """.format(dteID1, dteID1)
         else:
-            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;;width:15% ">STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
+            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;;width:150px  ">STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
                                                     </span>
                                                     """.format(dteID1, dteID1)
         if (envType2 == "CDRM"):
-            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:15% ">CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
+            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:150px  ">CDRM: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
                                                     </span>
                                                     """.format(dteID2, dteID2)
         else:
-            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:15% ">STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
+            msg += """<span style="font-family:  sans-serif; font-size: medium;white-space:nowrap;width:150px  ">STARTER: <a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a>
                                                                 </span>
                                                                 """.format(dteID2, dteID2)
         return msg
@@ -252,37 +264,37 @@ def generate_html_for_preflight_list(finalList2):
     # finalList3 now contains data encoded in utf-8
     msg = """<tr>
             <td valign="left"><span
-                    style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:10%"><br>
+                    style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
             </span></td>
             <td valign="top"><span
-                    style="font-family: sans-serif; font-size: medium;white-space:pre-wrap; word-wrap: break-word;width:40%">{}<br>
+                    style="font-family: sans-serif; font-size: medium;white-space:pre-wrap; word-wrap: break-word;width:400px ">{}<br>
             </span></td>
             <td valign="top"><span
-                style="font-family:  sans-serif; font-size: medium;white-space:pre-wrap; word-wrap: break-word;width:40%">{}<br>
+                style="font-family:  sans-serif; font-size: medium;white-space:pre-wrap; word-wrap: break-word;width:400px ">{}<br>
             </span></td>
     """.format(finalList3[0], finalList3[3]) #To print env name and purpose
     return msg
 
 
 def append_analysisdate_for_dte_list(finalList1):
-    msg = """<td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:15% ">{}</span></td>
+    msg = """<td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:150px  ">{}</span></td>
                     """.format(str(finalList1[7].encode('utf-8')).decode('utf-8').replace(u"\xa0", " ").encode(
         'utf-8'))  # To replace ascii character
     return msg
 
-def createTableForDailyRuns(finalDailyRunsList):
-    print finalDailyRunsList
+def createTableForPRCDailyRuns(finalPRCDailyRunsList):
+    print finalPRCDailyRunsList
     finalMsg = ""
-    for DailyRunList in finalDailyRunsList:
+    for DailyRunList in finalPRCDailyRunsList:
         if len(DailyRunList)==3:
             msg = """<tr>
                 <td valign="left"><span
-                        style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard"><br>
+                        style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
                 </span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:40% ">{}</span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:40% ">{}</span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:40% "></span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium; "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}</span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}</span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  "></span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;width:150 "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
                             """.format(str(DailyRunList[1].encode('utf-8')),
                                        str(DailyRunList[2]).encode('utf-8'),
                                        str(DailyRunList[0]).encode('utf-8'),
@@ -290,15 +302,48 @@ def createTableForDailyRuns(finalDailyRunsList):
         else:
             msg ="""<tr>
                 <td valign="left"><span
-                        style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard"><br>
+                        style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
                 </span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word ">{}</span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:40% "></span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:40% "></span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:15% "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:100px">{}</span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  "></span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  "></span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:150px  "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
                             """.format(str(DailyRunList[1].encode('utf-8')),
                                        str(DailyRunList[0]).encode('utf-8'),
                                        str(DailyRunList[0]).encode('utf-8'))
 
         finalMsg +=msg
+    return finalMsg
+
+
+def createTableForFTEDailyRuns(finalFTEDailyRunsList):
+    print finalFTEDailyRunsList
+    finalMsg = ""
+    for DailyRunList in finalFTEDailyRunsList:
+        if len(DailyRunList) == 3:
+            msg = """<tr>
+                    <td valign="left"><span
+                            style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
+                    </span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px ">{}</span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px "></span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px "></span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;width:150px "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
+                                """.format(str(DailyRunList[1].encode('utf-8')),
+                                           str(DailyRunList[0]).encode('utf-8'),
+                                           str(DailyRunList[0]).encode('utf-8'))
+        else:
+            msg = """<tr>
+                    <td valign="left"><span
+                            style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100"><br>
+                    </span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:100px">{}</span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px"></span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px"></span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:150px"><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
+                                """.format(str(DailyRunList[1].encode('utf-8')),
+                                           str(DailyRunList[0]).encode('utf-8'),
+                                           str(DailyRunList[0]).encode('utf-8'))
+
+        finalMsg += msg
     return finalMsg
