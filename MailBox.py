@@ -178,6 +178,8 @@ def get_table(tree):
     # Getting the Dte details table
     dtedetailsList = []
     dtetable = tree.find("table", {"id": "dte_details_table"})  # To get the dte table
+    if dtetable is None:
+        print dtetable
     table_body = dtetable.find('tbody')
     rows = table_body.find_all('tr')
     # Logic for dte table contains multiple rows (CDRM and DTE)
@@ -228,6 +230,8 @@ def main():
     dailyRunuids = get_uids(dailyRunMails)
     if (len(dailyRunuids) > 0):
         finalPRCDailyRunsList = dailyRuns.fetchDailyRunsBody(dailyRunMails, dailyRunuids)
+        print  "This is the final PRC daily runs that will be printed in mail"
+        print finalPRCDailyRunsList
     else:
         print "No PRC Daily runs found. Resuming with FTE Daily mails"
     # Logic to get FTE daily runs
@@ -235,23 +239,25 @@ def main():
     fteDailyRunsuids = get_uids(fteDailyRunsMails)
     if (len(fteDailyRunsuids) > 0):
         finalFTEDailyRunsList = ftedailyruns.fetchDailyRunsBody(fteDailyRunsMails, fteDailyRunsuids)
+        print  " This is the final FTE daily runs that will be printed in mail"
+        print finalFTEDailyRunsList
     else:
         print "No FTE Daily runs found. Resuming with preflight mails"
     # Logic for preflight mails
     preflightmails = preFlightMailsInit(host, username, password)
     uidsList = get_uids(preflightmails)
     # fetch_header(mail, uidsList) #Write code here to fetch headers
-    if (len(uidsList) > 0):  # Check for mAails count
+    if (len(uidsList) > 0):  # Check for mails count
         finalMailingList = fetch_body(preflightmails, uidsList)  # The Final Maliling List that need to be sent
         if (len(finalMailingList) == 0):
-            print "Analysis date validation did not pass"
-            exit(preflightmails)
-            return
-        print "This is the final preflight mails that will be printed in mail"
-        print finalMailingList
+            print "Analysis date or Topology validation did not pass. Resuming with other mails."
+            #exit(preflightmails)
+            #return
+        else:
+            print "This is the final preflight mails that will be printed in mail"
+            print finalMailingList
         # EmailSend.send_mail(finalMailingList)
         TableFormat.tableFormat(finalMailingList, finalPRCDailyRunsList, finalFTEDailyRunsList)
-
     else:
         print "No mails found. Exiting the mailbox notifier"
     exit(preflightmails)

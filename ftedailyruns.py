@@ -12,9 +12,11 @@ def dailyRunsMailsInit(host, username, password):
 
 def get_text_block(email_message_instance):
     if email_message_instance.is_multipart():
+        str_payload = ""
         for payload in email_message_instance.get_payload():
             # if payload.is_multipart(): ...
-            print payload.get_payload()
+            str_payload+= payload.get_payload()
+        return str_payload
     else:
         return email_message_instance.get_payload()
 
@@ -29,7 +31,7 @@ def fetchDailyRunsBody(mail, uidsList):
                                   "(UID BODY[])")  # Alternative way of fetching message body , ref; https://stackoverflow.com/questions/19540192/imap-get-sender-name-and-body-text
         msg = email.message_from_string(data[0][1])
         htmlbody = get_text_block(msg)
-        if (htmlbody != ''):
+        if (htmlbody is not None):
             tree = BeautifulSoup(htmlbody, "lxml")  # Never return the tree here as it will take only the last return
             dailyRunsList = []
             dailyRunsTable = tree.find("table")

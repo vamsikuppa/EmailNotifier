@@ -11,8 +11,8 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     me = "vamsi.k.kuppa@oracle.com"
     you = "vamsi.k.kuppa@oracle.com"
     #you = "sasasriv_org_ww@oracle.com"
-    recipients = ['vamsi.k.kuppa@oracle.com', 'shashank.sahay@oracle.com', 'ankita.yerawar@oracle.com',
-                  'anudeep.tangudu@oracle.com', 'kalva.avinash@oracle.com']
+    # recipients = ['vamsi.k.kuppa@oracle.com', 'shashank.sahay@oracle.com', 'ankita.yerawar@oracle.com',
+    #               'anudeep.tangudu@oracle.com', 'kalva.avinash@oracle.com']
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "FinTech Automation Notifier - " + todaysDate
     msg['From'] = me
@@ -20,87 +20,21 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     msg['To'] = you
     html = """<html>
             <head>
-            
-                <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+                <meta http-equiv="content-type" content="text/html; charset=utf-8">
             </head>
             <body text="#000000" bgcolor="#FFFFFF">
-            <br>
-            #Critical items (immediate action): Highlighted in <span
-                    style="color:#3333FF">blue</span>
             <div class="moz-forward-container">
                 <div class="moz-forward-container">
-                    <div class="moz-forward-container">
-                        <div class="moz-forward-container">
-                            <div class="moz-forward-container">
-                                <div class="moz-forward-container">
-                                    <div class="moz-forward-container">
-                                        <div class="WordSection1">
-                                            <div>
-                                                <p><strong><span style="color:red">#Important/Please
-                                        Note</span></strong><span style="color:red">:</span></p>
-                                                <ul type="disc">
-                                                    <ul type="circle">
-                                                        <li>Teams please find the new update process
-                                                            for Mergedown runs --&gt;&gt; <span
-                                                                    style="color: #000000; "><a
-                                                                    href="https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=81464107">ALM
-                                                                Update process</a></span></li>
-                                                        <li>Please note : this process is applicable
-                                                            only for FINC mergedown runs.
-                                                        </li>
-                                                        <li><span style="color: #3366ff; ">Teams, please tag
-                                                            all </span><span style="color: #3366ff; ">1802B
-                                                            Merge Down bugs with below tags. <br>
-                                                        </span></li>
-                                                        <ul>
-                                                            <span style="color: #3366ff; "> </span>
-                                                            <li><span style="color: #3366ff; ">1802B_P4FA FIN
-                                                                bug having Techstack bug as Base bug</span></li>
-                                                            <span style="color: #3366ff; "> </span>
-                                                            <li><span style="color: #3366ff; ">1802B_INTERMITTENT
-                                                                : For all product intermittent, setup
-                                                                issues bugs</span></li>
-                                                            <span style="color: #3366ff; "> </span>
-                                                            <li><span style="color: #3366ff; ">1802B_FA: For code
-                                                                fixes bugs</span></li>
-                                                            <span style="color: #3366ff; "> </span>
-                                                            <li><span style="color: #3366ff; ">1802B_FAAT : For
-                                                                testware fixes bugs</span></li>
-                                                        </ul>
-                                                        <li><a
-                                                                href="https://rms.us.oracle.com/analytics/saw.dll?Dashboard&amp;PortalPath=%2Fshared%2FFUSION%3AFINANCIALS%2F_portal%2FFinancials&amp;Page=Merge%20Down&amp;PageIdentifier=2kqavjq4k325i1km&amp;BookmarkState=3mbo5odbnnunipd9hejo8qb30i&amp;options=frd">Merge
-                                                            Down dashboard</a></li>
-                                                    </ul>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="moz-forward-container">
-                                    <div class="moz-forward-container">
-                                        <div class="moz-forward-container">
-                                            <div class="moz-forward-container">
-                                                <div class="moz-forward-container">
-                                                    <div class="moz-forward-container">
-                                                        <div class="moz-forward-container">
-                                                            <div class="moz-forward-container">
-                                                                <div class="WordSection1">
-                                                                    <div>
-                                                                        <p><span style="color:rgb(255,0,0);">
-                                                                              <strong>#Dispositions DUE Today:
-                                                                                Please find the priorities below
-                                                                                <br></strong></span></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <p><u><b><span style="color: red"> #IMPORTANT Announcement:</span></b></u><br></p>
+                <p>Teams, please ensure to use the same bug for FINC merge as used
+                    for FinD. Otherwise merge-reqs would be rejected for FINC merges.
+                    This is the process change announced last week.</p>
+                    <div class="WordSection1">
+                        <div>
+                            <p><span style="color:rgb(255,0,0);">
+                                  <strong>#Dispositions DUE Today:
+                                    Please find the priorities below
+                                    <br></strong></span></p>
                         </div>
                     </div>
                 </div>
@@ -120,42 +54,44 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     stringChunks = ""
     chunks.append(addTableHeaders())
     appendedStarter = False
-    for i, el in reversed(list(enumerate(finalList))):
-        if (appendedStarter == True):
-            appendedStarter = False
-            continue
-        flag = False  # Counter to first break inner loop
-        isInstanceFlag = False  # Counter to break second inner loop
-        for el1 in el:
-            if (isinstance(el1, list)):
-                chunks.append(generate_html_for_preflight_list(el))  # Pass the preflight table details
-                # run_once = True
-                break
-            else:
-                for nextEle in finalList[i - 1]:
-                    if (isinstance(nextEle, list)):  # Only one row
-                        # chunks.append(append_analysisdate_for_dte_list(el))
-                        chunks.append(generate_html_for_dte_list(el))
-                        isInstanceFlag = True
-                        # run_once = False
-                        break
-                    else:  # Found the second Starter or CDRM row
-                        # if (run_once == True):
-                        #     chunks.append(append_analysisdate_for_dte_list(el))  # Append analysis date once
-                        #     run_once = False
-                        # if (isinstance(finalList[i - 2]), list):
-                        chunks.append(
-                            generate_html_for_dte_list(el, finalList[i - 1]))  # Pass on the dte table details
-                        appendedStarter = True
-                        break
-                        # else:
-                        #     chunks.append(generate_html_for_dte_list(el, finalList[i - 1]))
-                if (isInstanceFlag == True or appendedStarter == True):  # Condition to break second inner loop
+    if finalList is not None:
+        for i, el in reversed(list(enumerate(finalList))):
+            if (appendedStarter == True):
+                appendedStarter = False
+                continue
+            flag = False  # Counter to first break inner loop
+            isInstanceFlag = False  # Counter to break second inner loop
+            for el1 in el:
+                if (isinstance(el1, list)):
+                    chunks.append(generate_html_for_preflight_list(el))  # Pass the preflight table details
+                    # run_once = True
                     break
-            continue
-    for i, x in enumerate(chunks):
-        stringChunks = stringChunks + str(x) #Both are none
-    if finalPRCDailyRunsList and finalFTEDailyRunsList is None:
+                else:
+                    for nextEle in finalList[i - 1]:
+                        if (isinstance(nextEle, list)):  # Only one row
+                            # chunks.append(append_analysisdate_for_dte_list(el))
+                            chunks.append(generate_html_for_dte_list(el))
+                            isInstanceFlag = True
+                            # run_once = False
+                            break
+                        else:  # Found the second Starter or CDRM row
+                            # if (run_once == True):
+                            #     chunks.append(append_analysisdate_for_dte_list(el))  # Append analysis date once
+                            #     run_once = False
+                            # if (isinstance(finalList[i - 2]), list):
+                            chunks.append(
+                                generate_html_for_dte_list(el, finalList[i - 1]))  # Pass on the dte table details
+
+                            appendedStarter = True
+                            break
+                            # else:
+                            #     chunks.append(generate_html_for_dte_list(el, finalList[i - 1]))
+                    if (isInstanceFlag == True or appendedStarter == True):  # Condition to break second inner loop
+                        break
+                continue
+        for i, x in enumerate(chunks):
+            stringChunks = stringChunks + str(x) #Both are none
+    if finalPRCDailyRunsList  is None and finalFTEDailyRunsList is None:
         listHtml1 = html + stringChunks + signature
     elif finalFTEDailyRunsList is None: #Only PRC Mails
         listHtml1 = html + stringChunks + createTableForPRCDailyRuns(finalPRCDailyRunsList) + signature
