@@ -9,8 +9,8 @@ import datetime
 def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    you = "vamsi.k.kuppa@oracle.com"
-    #you = "sasasriv_org_ww@oracle.com"
+    #you = "vamsi.k.kuppa@oracle.com"
+    you = "sasasriv_org_ww@oracle.com"
     # recipients = ['vamsi.k.kuppa@oracle.com', 'shashank.sahay@oracle.com', 'ankita.yerawar@oracle.com',
     #               'anudeep.tangudu@oracle.com', 'kalva.avinash@oracle.com']
     msg = MIMEMultipart('alternative')
@@ -52,9 +52,10 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     """
     chunks = []
     stringChunks = ""
-    chunks.append(addTableHeaders())
+    #chunks.append(addTableHeaders())
+    html += addTableHeaders()
     appendedStarter = False
-    if finalList is not None:
+    if finalList is not None: # None check for preflight mails
         for i, el in reversed(list(enumerate(finalList))):
             if (appendedStarter == True):
                 appendedStarter = False
@@ -90,7 +91,7 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
                         break
                 continue
         for i, x in enumerate(chunks):
-            stringChunks = stringChunks + str(x) #Both are none
+            html = html + str(x) #Both are none
     if finalPRCDailyRunsList  is None and finalFTEDailyRunsList is None:
         listHtml1 = html + stringChunks + signature
     elif finalFTEDailyRunsList is None: #Only PRC Mails

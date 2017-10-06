@@ -20,7 +20,7 @@ def preFlightMailsInit(host, username, password):
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    date = (datetime.date.today() - datetime.timedelta(2)).strftime("%d-%b-%Y")  # Change logic here for daterange
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
     # result, data = mail.search(None, '(UNSEEN)')  # to get the unread emails #Always use mail.search() here
@@ -259,7 +259,8 @@ def main():
         # EmailSend.send_mail(finalMailingList)
         TableFormat.tableFormat(finalMailingList, finalPRCDailyRunsList, finalFTEDailyRunsList)
     else:
-        print "No mails found. Exiting the mailbox notifier"
+        print "No preflight mails found. printing PRC daily runs and FTE daily runs"
+        TableFormat.tableFormat(None, finalPRCDailyRunsList, finalFTEDailyRunsList)
     exit(preflightmails)
 
 
