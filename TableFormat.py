@@ -9,8 +9,8 @@ import datetime
 def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    #you = "vamsi.k.kuppa@oracle.com"
-    you = "sasasriv_org_ww@oracle.com"
+    you = "vamsi.k.kuppa@oracle.com"
+    #you = "sasasriv_org_ww@oracle.com"
     # recipients = ['vamsi.k.kuppa@oracle.com', 'shashank.sahay@oracle.com', 'ankita.yerawar@oracle.com',
     #               'anudeep.tangudu@oracle.com', 'kalva.avinash@oracle.com']
     msg = MIMEMultipart('alternative')
@@ -25,10 +25,6 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
             <body text="#000000" bgcolor="#FFFFFF">
             <div class="moz-forward-container">
                 <div class="moz-forward-container">
-                <p><u><b><span style="color: red"> #IMPORTANT Announcement:</span></b></u><br></p>
-                <p>Teams, please ensure to use the same bug for FINC merge as used
-                    for FinD. Otherwise merge-reqs would be rejected for FINC merges.
-                    This is the process change announced last week.</p>
                     <div class="WordSection1">
                         <div>
                             <p><span style="color:rgb(255,0,0);">

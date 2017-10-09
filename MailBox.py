@@ -20,7 +20,7 @@ def preFlightMailsInit(host, username, password):
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(2)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    date = (datetime.date.today() - datetime.timedelta(3)).strftime("%d-%b-%Y")  # Change logic here for daterange
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
     # result, data = mail.search(None, '(UNSEEN)')  # to get the unread emails #Always use mail.search() here
@@ -172,7 +172,7 @@ def get_table(tree):
     for preflightTableRow in preflightTableRows:
         preflightTableCols = preflightTableRow.find_all('td')
         preflightTableColEles = [preflightTableColEle.text.strip() for preflightTableColEle in preflightTableCols]
-        preflightsList.append([colEle for colEle in preflightTableColEles if colEle])  # Get rid of empty values
+        preflightsList.append([colEle for colEle in preflightTableColEles])  # Removed condition to Get rid of empty values
         # preflightsListStr = preflightsListStr.join(colEle.encode('utf-8') for colEle in preflightTableColEles if colEle)
     # Now preflightList contains the Preflight Table Second column values
     # Getting the Dte details table
