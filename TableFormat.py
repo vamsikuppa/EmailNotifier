@@ -25,6 +25,53 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
             <body text="#000000" bgcolor="#FFFFFF">
             <div class="moz-forward-container">
                 <div class="moz-forward-container">
+                            <p><span style="color:rgb(255,0,0);">
+                                      <strong>#IMPORTANT Announcement
+                                        <br></strong></span></p>
+                            <ul type="circle">
+                                <ul>
+                                    <span style="color: #3366ff; "> </span>
+                                    <li>Teams please find the new update process for
+                                        Mergedown runs --&gt;&gt; <span style="color:
+                                    #000000; "><a
+                                                href="https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=81464107"
+                                                moz-do-not-send="true">ALM Update process</a></span></li>
+                                    <li>Please note : this process is applicable only for
+                                        FINC mergedown runs.
+                                    </li>
+                                    <li><span style="color: #3366ff; ">Please tag all
+                                  </span><span style="color: #3366ff; ">1802C Merge Down
+                                    bugs with below tags. </span><br>
+                                        <span style="color: #3366ff; "></span></li>
+                                    <ul>
+                                        <li><span style="color: #3366ff; ">1802C_P4FA FIN bug
+                                      having Techstack bug as Base bug</span></li>
+                                    </ul>
+                                    <span style="color: #3366ff; "> </span>
+                                    <ul>
+                                        <li><span style="color: #3366ff; ">1802C_INTERMITTENT
+                                      : For all product intermittent, setup issues bugs</span></li>
+                                    </ul>
+                                    <span style="color: #3366ff; "> </span>
+                                    <ul>
+                                        <li><span style="color: #3366ff; ">1802C_FA: For code
+                                      fixes bugs</span></li>
+                                    </ul>
+                                    <span style="color: #3366ff; "> </span>
+                                    <ul>
+                                        <li><span style="color: #3366ff; ">1802C_FAAT : For
+                                      testware fixes bugs</span></li>
+                                    </ul>
+                                    <li><span style="color: #3366ff; "><a
+                                            href="https://rms.us.oracle.com/analytics/saw.dll?Dashboard&amp;PortalPath=%2Fshared%2FFUSION%3AFINANCIALS%2F_portal%2FFinancials&amp;Page=Merge%20Down&amp;PageIdentifier=2kqavjq4k325i1km&amp;BookmarkState=3mbo5odbnnunipd9hejo8qb30i&amp;options=frd"
+                                            moz-do-not-send="true">Merge Down dashboard</a></span></li>
+                                    <li><span style="color: #3366ff; ">Please ensure to use
+                                          the same bug for FINC merge as used for FinD.
+                                          Otherwise merge-reqs would be rejected for FINC
+                                          merges. This is the process change was announced last
+                                          week.</span></li>
+                                </ul>
+                            </ul>
                     <div class="WordSection1">
                         <div>
                             <p><span style="color:rgb(255,0,0);">
@@ -48,10 +95,10 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     """
     chunks = []
     stringChunks = ""
-    #chunks.append(addTableHeaders())
+    # chunks.append(addTableHeaders())
     html += addTableHeaders()
     appendedStarter = False
-    if finalList is not None: # None check for preflight mails
+    if finalList is not None:  # None check for preflight mails
         for i, el in reversed(list(enumerate(finalList))):
             if (appendedStarter == True):
                 appendedStarter = False
@@ -87,15 +134,16 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
                         break
                 continue
         for i, x in enumerate(chunks):
-            html = html + str(x) #Both are none
-    if finalPRCDailyRunsList  is None and finalFTEDailyRunsList is None:
+            html = html + str(x)  # Both are none
+    if finalPRCDailyRunsList is None and finalFTEDailyRunsList is None:
         listHtml1 = html + stringChunks + signature
-    elif finalFTEDailyRunsList is None: #Only PRC Mails
+    elif finalFTEDailyRunsList is None:  # Only PRC Mails
         listHtml1 = html + stringChunks + createTableForPRCDailyRuns(finalPRCDailyRunsList) + signature
-    elif finalPRCDailyRunsList is None: # Only FTE Mails
+    elif finalPRCDailyRunsList is None:  # Only FTE Mails
         listHtml1 = html + stringChunks + createTableForFTEDailyRuns(finalFTEDailyRunsList) + signature
-    else: # Everything
-        listHtml1 = html + stringChunks + createTableForPRCDailyRuns(finalPRCDailyRunsList) + createTableForFTEDailyRuns(finalFTEDailyRunsList) + signature
+    else:  # Everything
+        listHtml1 = html + stringChunks + createTableForPRCDailyRuns(
+            finalPRCDailyRunsList) + createTableForFTEDailyRuns(finalFTEDailyRunsList) + signature
 
     part3 = MIMEText(listHtml1, 'html')
     msg.attach(part3)  # ****** This is Working :)
@@ -205,7 +253,7 @@ def generate_html_for_preflight_list(finalList2):
             <td valign="top"><span
                 style="font-family:  sans-serif; font-size: medium;white-space:pre-wrap; word-wrap: break-word;width:400px ">{}<br>
             </span></td>
-    """.format(finalList3[0], finalList3[3]) #To print env name and purpose
+    """.format(finalList3[0], finalList3[3])  # To print env name and purpose
     return msg
 
 
@@ -215,42 +263,49 @@ def append_analysisdate_for_dte_list(finalList1):
         'utf-8'))  # To replace ascii character
     return msg
 
+
 def createTableForPRCDailyRuns(finalPRCDailyRunsList):
     print finalPRCDailyRunsList
+    todayAnalysisDate = (datetime.date.today()).strftime("%b. %d, %Y")
+    # print "Todays analysis due date {}".format(todayAnalysisDate)
     finalMsg = ""
     for DailyRunList in finalPRCDailyRunsList:
-        if len(DailyRunList)==3:
+        if len(DailyRunList) == 3:
             msg = """<tr>
                 <td valign="left"><span
                         style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
                 </span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}</span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}</span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  "></span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}, 4PM IST</span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;width:150 "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
                             """.format(str(DailyRunList[1].encode('utf-8')),
                                        str(DailyRunList[2]).encode('utf-8'),
+                                       str(todayAnalysisDate),
                                        str(DailyRunList[0]).encode('utf-8'),
                                        str(DailyRunList[0]).encode('utf-8'))
         else:
-            msg ="""<tr>
+            msg = """<tr>
                 <td valign="left"><span
                         style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
                 </span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:100px">{}</span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  "></span></td>
-            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  "></span></td>
+            <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}, 4PM IST</span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:150px  "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
                             """.format(str(DailyRunList[1].encode('utf-8')),
+                                       str(todayAnalysisDate),
                                        str(DailyRunList[0]).encode('utf-8'),
                                        str(DailyRunList[0]).encode('utf-8'))
 
-        finalMsg +=msg
+        finalMsg += msg
     return finalMsg
 
 
 def createTableForFTEDailyRuns(finalFTEDailyRunsList):
     print finalFTEDailyRunsList
+    todayAnalysisDate = (datetime.date.today()).strftime("%b. %d, %Y")
+    # print "Todays analysis due date {}".format(todayAnalysisDate)
     finalMsg = ""
     for DailyRunList in finalFTEDailyRunsList:
         if len(DailyRunList) == 3:
@@ -260,9 +315,10 @@ def createTableForFTEDailyRuns(finalFTEDailyRunsList):
                     </span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px ">{}</span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px "></span></td>
-                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px "></span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px ">{}, 4PM IST</span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;width:150px "><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
                                 """.format(str(DailyRunList[1].encode('utf-8')),
+                                           str(todayAnalysisDate),
                                            str(DailyRunList[0]).encode('utf-8'),
                                            str(DailyRunList[0]).encode('utf-8'))
         else:
@@ -272,9 +328,10 @@ def createTableForFTEDailyRuns(finalFTEDailyRunsList):
                     </span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:100px">{}</span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px"></span></td>
-                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px"></span></td>
+                <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px">{}, 4PM IST</span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:150px"><a href="http://preflightmanager.us.oracle.com/apex/f?p=121:14:7285005355584:5541213953682:NO::P14_DTE_ID,P14_RERUN_ID:{},1">{}</a></span></td>
                                 """.format(str(DailyRunList[1].encode('utf-8')),
+                                           str(todayAnalysisDate),
                                            str(DailyRunList[0]).encode('utf-8'),
                                            str(DailyRunList[0]).encode('utf-8'))
 
