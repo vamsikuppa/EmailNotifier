@@ -78,7 +78,7 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
                                     Please find the priorities below
                                     <br></strong></span></p><br>
                                     <span style="color:rgb(255,0,0);"><b>**By default, all Central MIB, Central P4FA preflights
-                                     and Central Env runs will be of P1 Priority, Unless explicitly mentioned.</b></span><br><br>
+                                     and Daily runs will be of P1 Priority, Unless explicitly mentioned.</b></span><br><br>
                         </div>
                     </div>
                 </div>
