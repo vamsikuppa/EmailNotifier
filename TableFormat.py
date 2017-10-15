@@ -68,8 +68,7 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
                                     <li><span style="color: #3366ff; ">Please ensure to use
                                           the same bug for FINC merge as used for FinD.
                                           Otherwise merge-reqs would be rejected for FINC
-                                          merges. This is the process change was announced last
-                                          week.</span></li>
+                                          merges.</span></li>
                                 </ul>
                             </ul>
                     <div class="WordSection1">
@@ -77,7 +76,9 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
                             <p><span style="color:rgb(255,0,0);">
                                   <strong>#Dispositions DUE Today:
                                     Please find the priorities below
-                                    <br></strong></span></p>
+                                    <br></strong></span></p><br>
+                                    <span style="color:rgb(255,0,0);"><b>**By default, all Central MIB, Central P4FA preflights
+                                     and Central Env runs will be of P1 Priority, Unless explicitly mentioned.</b></span><br><br>
                         </div>
                     </div>
                 </div>
@@ -160,9 +161,6 @@ def addTableHeaders():
     msg = """<table height="59" cellspacing="2" cellpadding="2" height="90" width="1353" border="1">
     <tbody>
     <tr>
-        <th bgcolor="#cccccc" valign="top"><span style="font-family:
-                  sans-serif; font-size: medium;width:100px  "><b>Priority/Comments</b><br>
-        </span></th>
         <th bgcolor="#ff0000" valign="top"><span style="font-family:
                    sans-serif; color: #ffffff; font-size: medium;width:400px  ">Environment<br>
         </span></th>
@@ -244,9 +242,6 @@ def generate_html_for_preflight_list(finalList2):
             continue
     # finalList3 now contains data encoded in utf-8
     msg = """<tr>
-            <td valign="left"><span
-                    style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
-            </span></td>
             <td valign="top"><span
                     style="font-family: sans-serif; font-size: medium;white-space:pre-wrap; word-wrap: break-word;width:400px ">{}<br>
             </span></td>
@@ -272,9 +267,6 @@ def createTableForPRCDailyRuns(finalPRCDailyRunsList):
     for DailyRunList in finalPRCDailyRunsList:
         if len(DailyRunList) == 3:
             msg = """<tr>
-                <td valign="left"><span
-                        style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
-                </span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}</span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}</span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}, 4PM IST</span></td>
@@ -286,9 +278,6 @@ def createTableForPRCDailyRuns(finalPRCDailyRunsList):
                                        str(DailyRunList[0]).encode('utf-8'))
         else:
             msg = """<tr>
-                <td valign="left"><span
-                        style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
-                </span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:100px">{}</span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  "></span></td>
             <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px  ">{}, 4PM IST</span></td>
@@ -310,9 +299,6 @@ def createTableForFTEDailyRuns(finalFTEDailyRunsList):
     for DailyRunList in finalFTEDailyRunsList:
         if len(DailyRunList) == 3:
             msg = """<tr>
-                    <td valign="left"><span
-                            style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100px "><br>
-                    </span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px ">{}</span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px "></span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px ">{}, 4PM IST</span></td>
@@ -323,9 +309,6 @@ def createTableForFTEDailyRuns(finalFTEDailyRunsList):
                                            str(DailyRunList[0]).encode('utf-8'))
         else:
             msg = """<tr>
-                    <td valign="left"><span
-                            style="font-family:  sans-serif; font-size: medium;white-space:nowrap; wrap="hard";width:100"><br>
-                    </span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:100px">{}</span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px"></span></td>
                 <td valign="top"><span style="font-family:  sans-serif; font-size: medium;word-wrap: break-word;width:400px">{}, 4PM IST</span></td>
