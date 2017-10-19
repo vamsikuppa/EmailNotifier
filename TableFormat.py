@@ -9,14 +9,14 @@ import datetime
 def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    you = "vamsi.k.kuppa@oracle.com"
-    #you = "sasasriv_org_ww@oracle.com"
-    # recipients = ['vamsi.k.kuppa@oracle.com', 'shashank.sahay@oracle.com', 'ankita.yerawar@oracle.com',
-    #               'anudeep.tangudu@oracle.com', 'kalva.avinash@oracle.com']
+    #you = "vamsi.k.kuppa@oracle.com"
+    #recipients = ['vamsi.k.kuppa@oracle.com', 'vamsi.k.kuppa@oracle.com']
+    you = "fin_oats_grp@oracle.com"
+    recipients = ['sandeep.s.srivastava@oracle.com','shashank.sahay@oracle.com','fusion_fin_automation_ww_grp@oracle.com','vishal.grover@oracle.com','rajesh.bella@oracle.com']
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "FinTech Automation Notifier - " + todaysDate
     msg['From'] = me
-    # msg['To'] = ", ".join(recipients)
+    msg['Cc'] = ", ".join(recipients)
     msg['To'] = you
     html = """<html>
             <head>
@@ -152,8 +152,9 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     s.login(me, "Skyfall@1")
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    # s.sendmail(me, recipients, msg.as_string())
-    s.sendmail(me, you, msg.as_string())
+    #s.sendmail(me, recipients, msg.as_string())
+    s.sendmail(msg['From'],[you,msg['Cc']],msg.as_string())
+    #s.sendmail(me, you, msg.as_string())
     s.quit()
 
 
