@@ -9,10 +9,10 @@ import datetime
 def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    #you = "vamsi.k.kuppa@oracle.com"
-    #recipients = ['vamsi.k.kuppa@oracle.com', 'vamsi.k.kuppa@oracle.com']
-    you = "fin_oats_grp@oracle.com"
-    recipients = ['sandeep.s.srivastava@oracle.com','shashank.sahay@oracle.com','fusion_fin_automation_ww_grp@oracle.com','vishal.grover@oracle.com','rajesh.bella@oracle.com']
+    you = "vamsi.k.kuppa@oracle.com"
+    recipients = ['vamsi.k.kuppa@oracle.com', 'vamsi.k.kuppa@oracle.com']
+    #you = "fin_oats_grp@oracle.com"
+    #recipients = ['sandeep.s.srivastava@oracle.com','shashank.sahay@oracle.com','fusion_fin_automation_ww_grp@oracle.com','vishal.grover@oracle.com','rajesh.bella@oracle.com']
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "FinTech Automation Notifier - " + todaysDate
     msg['From'] = me
@@ -77,8 +77,8 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
                                   <strong>#Dispositions DUE Today:
                                     Please find the priorities below
                                     <br></strong></span></p><br>
-                                    <span style="color:rgb(255,0,0);"><b>**By default, all Central MIB, Central P4FA preflights
-                                     and Daily runs will be of P1 Priority, Unless explicitly mentioned.</b></span><br><br>
+                                    <span>#Note: Please prioritize all Central BATS certifications, MIB/P4FA preflight validations over other items in the list. Unless explicitly mentioned otherwise
+                                    </span><br><br>
                         </div>
                     </div>
                 </div>
