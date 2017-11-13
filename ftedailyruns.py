@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 def dailyRunsMailsInit(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
     mail.login(username, password)
-    mail.select("FTEDailyRuns", readonly=1)
+    mail.select("FTEDailyRuns", readonly=True)
     return mail
 
 

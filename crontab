@@ -1,0 +1,8 @@
+# m h  dom mon dow   command
+
+
+0 8 * * 1 cd /home/vagrant/EmailNotifierMonday/ && /usr/bin/python /home/vagrant/EmailNotifierMonday/MailBox.py >> /home/vagrant/EmailNotifierMonday/cron_output.log
+
+0 8 * * 2-5 cd /home/vagrant/EmailNotifier/ && /usr/bin/python /home/vagrant/EmailNotifier/MailBox.py >> /home/vagrant/EmailNotifier/cron_output.log
+
+0 7 * * * cd /home/vagrant/EmailNotifyMe/ && /usr/bin/python /home/vagrant/EmailNotifyMe/MailBox.py >> /home/vagrant/EmailNotifyMe/cron_output.log

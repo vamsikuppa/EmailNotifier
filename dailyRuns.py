@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 def dailyRunsMailsInit(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
     mail.login(username, password)
-    mail.select("PRCDailyRuns", readonly=1)
+    mail.select("PRCDailyRuns", readonly=True)
     return mail
 
 def get_text_block(email_message_instance):

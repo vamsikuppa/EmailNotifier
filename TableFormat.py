@@ -25,60 +25,14 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
             <body text="#000000" bgcolor="#FFFFFF">
             <div class="moz-forward-container">
                 <div class="moz-forward-container">
-                            <p><span style="color:rgb(255,0,0);">
-                                      <strong>#IMPORTANT Announcement
-                                        <br></strong></span></p>
-                            <ul type="circle">
-                                <ul>
-                                    <span style="color: #3366ff; "> </span>
-                                    <li>Teams please find the new update process for
-                                        Mergedown runs --&gt;&gt; <span style="color:
-                                    #000000; "><a
-                                                href="https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=81464107"
-                                                moz-do-not-send="true">ALM Update process</a></span></li>
-                                    <li>Please note : this process is applicable only for
-                                        FINC mergedown runs.
-                                    </li>
-                                    <li><span style="color: #3366ff; ">Please tag all
-                                  </span><span style="color: #3366ff; ">1802C Merge Down
-                                    bugs with below tags. </span><br>
-                                        <span style="color: #3366ff; "></span></li>
-                                    <ul>
-                                        <li><span style="color: #3366ff; ">1802C_P4FA FIN bug
-                                      having Techstack bug as Base bug</span></li>
-                                    </ul>
-                                    <span style="color: #3366ff; "> </span>
-                                    <ul>
-                                        <li><span style="color: #3366ff; ">1802C_INTERMITTENT
-                                      : For all product intermittent, setup issues bugs</span></li>
-                                    </ul>
-                                    <span style="color: #3366ff; "> </span>
-                                    <ul>
-                                        <li><span style="color: #3366ff; ">1802C_FA: For code
-                                      fixes bugs</span></li>
-                                    </ul>
-                                    <span style="color: #3366ff; "> </span>
-                                    <ul>
-                                        <li><span style="color: #3366ff; ">1802C_FAAT : For
-                                      testware fixes bugs</span></li>
-                                    </ul>
-                                    <li><span style="color: #3366ff; "><a
-                                            href="https://rms.us.oracle.com/analytics/saw.dll?Dashboard&amp;PortalPath=%2Fshared%2FFUSION%3AFINANCIALS%2F_portal%2FFinancials&amp;Page=Merge%20Down&amp;PageIdentifier=2kqavjq4k325i1km&amp;BookmarkState=3mbo5odbnnunipd9hejo8qb30i&amp;options=frd"
-                                            moz-do-not-send="true">Merge Down dashboard</a></span></li>
-                                    <li><span style="color: #3366ff; ">Please ensure to use
-                                          the same bug for FINC merge as used for FinD.
-                                          Otherwise merge-reqs would be rejected for FINC
-                                          merges.</span></li>
-                                </ul>
-                            </ul>
                     <div class="WordSection1">
                         <div>
                             <p><span style="color:rgb(255,0,0);">
                                   <strong>#Dispositions DUE Today:
                                     Please find the priorities below
                                     <br></strong></span></p><br>
-                                    <span style="color:rgb(255,0,0);"><b>**By default, all Central MIB, Central P4FA preflights
-                                     and Daily runs will be of P1 Priority, Unless explicitly mentioned.</b></span><br><br>
+                                    <span>#Note: Please prioritize all Central BATS certifications, MIB/P4FA preflight validations over other items in the list. Unless explicitly mentioned otherwise
+                                    </span><br><br>
                         </div>
                     </div>
                 </div>
