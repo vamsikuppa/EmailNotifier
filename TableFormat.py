@@ -9,10 +9,10 @@ import datetime
 def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
     todaysDate = datetime.datetime.today().strftime('%d-%b')
     me = "vamsi.k.kuppa@oracle.com"
-    #you = "vamsi.k.kuppa@oracle.com"
-    #recipients = ['vamsi.k.kuppa@oracle.com', 'vamsi.k.kuppa@oracle.com']
-    you = "fin_oats_grp@oracle.com"
-    recipients = ['sandeep.s.srivastava@oracle.com','shashank.sahay@oracle.com','fusion_fin_automation_ww_grp@oracle.com','vishal.grover@oracle.com','rajesh.bella@oracle.com']
+    you = "vamsi.k.kuppa@oracle.com"
+    recipients = ['vamsi.k.kuppa@oracle.com', 'vamsi.k.kuppa@oracle.com']
+    #you = "fin_oats_grp@oracle.com"
+    #recipients = ['sandeep.s.srivastava@oracle.com','shashank.sahay@oracle.com','fusion_fin_automation_ww_grp@oracle.com','vishal.grover@oracle.com','rajesh.bella@oracle.com']
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "FinTech Automation Notifier - " + todaysDate
     msg['From'] = me
