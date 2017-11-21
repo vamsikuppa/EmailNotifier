@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b69ed016-930e-4a64-a5c9-59bab0aefcf2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MailBox.py" afterPath="$PROJECT_DIR$/MailBox.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TableFormat.py" afterPath="$PROJECT_DIR$/TableFormat.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,11 +40,10 @@
       <file leaf-file-name="MailBox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MailBox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="6384">
+              <caret line="266" column="10" lean-forward="false" selection-start-line="266" selection-start-column="10" selection-end-line="266" selection-end-column="10" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
-                <element signature="e#11265#11344#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -82,6 +80,7 @@
               <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
+                <marker date="1510626936808" expanded="true" signature="466:637" ph="..." />
               </folding>
             </state>
           </provider>
@@ -128,6 +127,7 @@
       <find>serif</find>
       <find>Analysis date validation did not pass</find>
       <find>r</find>
+      <find>logger</find>
     </findStrings>
     <replaceStrings>
       <replace>email_message_instance</replace>
@@ -144,10 +144,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/ftedailyruns.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/dailyRuns.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/UnReadEmails.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/TableFormat.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/MailBox.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/UnReadEmails.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/dailyRuns.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/EmailSend.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
@@ -171,8 +171,8 @@
         <option value="$PROJECT_DIR$/1711Notifier.html" />
         <option value="$PROJECT_DIR$/dailyRuns.py" />
         <option value="$PROJECT_DIR$/ftedailyruns.py" />
-        <option value="$PROJECT_DIR$/MailBox.py" />
         <option value="$PROJECT_DIR$/TableFormat.py" />
+        <option value="$PROJECT_DIR$/MailBox.py" />
       </list>
     </option>
   </component>
@@ -486,11 +486,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24436091" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32801822" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -631,7 +630,6 @@
           <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#11265#11344#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -657,7 +655,6 @@
           <caret line="51" column="21" lean-forward="false" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#11265#11344#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -676,7 +673,6 @@
           <caret line="107" column="62" lean-forward="false" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#11265#11344#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -856,17 +852,17 @@
           <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
+            <marker date="1510626936808" expanded="true" signature="466:637" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MailBox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="6384">
+          <caret line="266" column="10" lean-forward="false" selection-start-line="266" selection-start-column="10" selection-end-line="266" selection-end-column="10" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
-            <element signature="e#11265#11344#0" expanded="false" />
           </folding>
         </state>
       </provider>

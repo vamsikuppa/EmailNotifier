@@ -5,4 +5,8 @@
 
 0 8 * * 2-5 cd /home/vagrant/EmailNotifier/ && /usr/bin/python /home/vagrant/EmailNotifier/MailBox.py >> /home/vagrant/EmailNotifier/cron_output.log
 
+0 12 * * 2-5 cd /home/vagrant/EmailNotifier12PM/ && /usr/bin/python /home/vagrant/EmailNotifier12PM/MailBox.py >> /home/vagrant/EmailNotifier12PM/cron_output.log
+
+0 12 * * 1 cd /home/vagrant/EmailNotifier12PM_Monday/ && /usr/bin/python /home/vagrant/EmailNotifier12PM_Monday/MailBox.py >> /home/vagrant/EmailNotifier12PM_Monday/cron_output.log
+
 0 7 * * * cd /home/vagrant/EmailNotifyMe/ && /usr/bin/python /home/vagrant/EmailNotifyMe/MailBox.py >> /home/vagrant/EmailNotifyMe/cron_output.log
