@@ -15,12 +15,13 @@ import ftedailyruns
 def preFlightMailsInit(host, username, password):
     mail = imaplib.IMAP4_SSL(host)
     mail.login(username, password)
-    mail.select("PreflightMails", readonly=1)
+    mail.select("PreflightMails", readonly=True)
     return mail
 
 
 def get_uids(mail):
-    date = (datetime.date.today() - datetime.timedelta(1)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    date = (datetime.date.today() - datetime.timedelta(3)).strftime("%d-%b-%Y")  # Change logic here for daterange
+    print "Date range used for searching {}".format(date)
     result, data = mail.search(None, '(SENTSINCE {date})'.format(date=date))
     # print result ===>> OK #Can have a check to see result is OK
     # result, data = mail.search(None, '(UNSEEN)')  # to get the unread emails #Always use mail.search() here
