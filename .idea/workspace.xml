@@ -37,10 +37,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="MailBox.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MailBox.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MailBox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6384">
+            <state relative-caret-position="6144">
               <caret line="266" column="10" lean-forward="false" selection-start-line="266" selection-start-column="10" selection-end-line="266" selection-end-column="10" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
@@ -73,14 +73,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TableFormat.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TableFormat.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TableFormat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+            <state relative-caret-position="344">
+              <caret line="37" column="32" lean-forward="true" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
-                <marker date="1510626936808" expanded="true" signature="466:637" ph="..." />
+                <marker date="1512877089364" expanded="true" signature="466:637" ph="..." />
               </folding>
             </state>
           </provider>
@@ -171,8 +171,8 @@
         <option value="$PROJECT_DIR$/1711Notifier.html" />
         <option value="$PROJECT_DIR$/dailyRuns.py" />
         <option value="$PROJECT_DIR$/ftedailyruns.py" />
-        <option value="$PROJECT_DIR$/TableFormat.py" />
         <option value="$PROJECT_DIR$/MailBox.py" />
+        <option value="$PROJECT_DIR$/TableFormat.py" />
       </list>
     </option>
   </component>
@@ -207,7 +207,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EmailNotifier12PM" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/cron_output.log&#10;true" />
@@ -486,6 +486,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24436091" sideWeight="0.4852941" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -589,7 +590,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/TableFormat.py</url>
-          <line>155</line>
+          <line>181</line>
           <option name="timeStamp" value="190" />
         </line-breakpoint>
       </breakpoints>
@@ -846,20 +847,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TableFormat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-            <marker date="1510626936808" expanded="true" signature="466:637" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MailBox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6384">
+        <state relative-caret-position="6144">
           <caret line="266" column="10" lean-forward="false" selection-start-line="266" selection-start-column="10" selection-end-line="266" selection-end-column="10" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
@@ -873,6 +863,17 @@
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding>
             <element signature="e#24#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TableFormat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="37" column="32" lean-forward="true" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+          <folding>
+            <element signature="e#24#38#0" expanded="true" />
+            <marker date="1512877089364" expanded="true" signature="466:637" ph="..." />
           </folding>
         </state>
       </provider>

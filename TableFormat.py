@@ -25,6 +25,32 @@ def tableFormat(finalList, finalPRCDailyRunsList, finalFTEDailyRunsList):
             <body text="#000000" bgcolor="#FFFFFF">
             <div class="moz-forward-container">
                 <div class="moz-forward-container">
+                <p><span style="color:rgb(255,0,0);"> <strong>#IMPORTANT
+                                Announcement <br>
+                              </strong></span></p>
+                          <ul type="circle">
+                            <ul>
+                              <span style="color: #3366ff; "> </span>
+                            </ul>
+                          </ul>
+                          <ul>
+                            <li>Teams please join FIN automation Slack channels listed below</li>
+                            <ul>
+                              <li>#<b>fin-automation  -</b> 4 PM updates and Production
+                                Codelines certifications like V2MIB, R12-R8 Bundles
+                                updates/actions.</li>
+                              <li><b>#fin-v2mibfinc-qa - </b>Financials V2MIBFINC QA
+                                collaboration for V2MIBFINC code line certifications- All
+                                FINC certification results /collaborations through this
+                                channel including FAAT Updates, Results, Failure
+                                Notifications</li>
+                              <li>#<b>fin-v2mibfind-qa - </b>Financials V2MIBFIND QA
+                                collaboration for V2MIBFIND code line certifications - All
+                                FIND certification results /collaborations through this
+                                channel including FAAT Updates, Results, Failure
+                                Notifications</li>
+                            </ul>
+                          </ul>
                     <div class="WordSection1">
                         <div>
                             <p><span style="color:rgb(255,0,0);">
